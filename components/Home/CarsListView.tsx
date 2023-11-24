@@ -3,6 +3,7 @@ import CarCard from './CarCard'
 import Car from '@/models/Car'
 import CarsList from '@/models/CarsList'
 import CarCardSkelton from './CarCardSkelton';
+import BookingModal from '../CarBooking/BookingModal';
 
 function CarsListView(props: CarsList) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,12 +18,20 @@ function CarsListView(props: CarsList) {
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {!isLoading ? props.carLists.map((car: Car, index: number) => (
-            <div key={index}>
+            <div key={index} 
+              onClick={() => {
+                (window as any).booking_modal.showModal();
+                setSelectedCar(car);
+              }}>
                 <CarCard car={car}/>
             </div>
-        )): [1,2,3,4,5].map((item) => (
+        )): [1,2,3,4,5,6,7,8].map((item) => (
           <CarCardSkelton/>
         ))}
+
+      <dialog id="booking_modal" className="modal">
+          <BookingModal selectedCar={selectedCar!}/>
+      </dialog>
     </div>
   )
 }

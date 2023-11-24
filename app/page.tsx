@@ -21,8 +21,6 @@ export default function Home() {
     carList();
   }, []);
 
-
-
   const carList = async () => {
     const result = await getCarsList() as CarsList;
     setCarsList(result?.carLists);
