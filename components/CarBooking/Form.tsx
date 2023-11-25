@@ -1,23 +1,17 @@
-import { BookingCreatedFlagContext, BookingCreatedFlagContextType } from '@/context/BookingCreatedFlagContext';
+import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext';
 import Car from '@/models/Car';
 import { FormDataModel } from '@/models/FormDataModel';
+import StoreLocation from '@/models/StoreLocation';
 import { createBooking, getStoreLocations } from '@/services';
 import React, { useContext, useEffect, useState } from 'react'
-
-interface Address {
-    address: string
-}
-
-interface StoreLocation {
-    storesLocations: Array<Address>
-}
+import Address from '@/models/Address';
+import BookingCreatedFlagContextType from '@/models/BookingCreatedFlagContextType';
 
 interface FormProps {
   car: Car
 }
 
 function Form({car}: FormProps) {
-
   const [storeLocation, setStoreLocation] = useState<StoreLocation>();
   const [formValue, setFormValue] = useState<FormDataModel>({
     location: '',
@@ -55,16 +49,12 @@ function Form({car}: FormProps) {
   };
 
   const handleSubmit = async () => {
-    console.log(formValue);
     const responseObj = await createBooking(formValue);
-    console.log(responseObj);
     if(responseObj){
       setShowToastMsg(true);
       setToastMsg('Booking Created Succesfully!');
     }
   }
-
-
 
   return (
     <div>
