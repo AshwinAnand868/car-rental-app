@@ -25,6 +25,14 @@ export default function Home() {
     carList();
   }, []);
 
+  useEffect(() => {
+    if(showToastMsg) {
+      setTimeout(() => {
+        setShowToastMsg(false);
+      }, 5000);
+    }
+  }, [showToastMsg]);
+
   const carList = async () => {
     const result = await getCarsList() as CarsList;
     setCarsList(result?.carLists);
