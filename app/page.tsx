@@ -8,6 +8,8 @@ import CarsListView from '@/components/Home/CarsListView'
 import Car from '@/models/Car'
 import CarsList from '@/models/CarsList';
 import CarBrand from '@/models/CarBrand'
+import ToastMsg from '@/components/ToastMsgView'
+import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext'
 
 export default function Home() {
 
@@ -16,6 +18,8 @@ export default function Home() {
   const [carsOrgList, setCarsOrgList] = useState<Array<Car>>([]);
   const sortingOrder = useRef('');
   const selectedBrand = useRef('');
+  const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
+  const [toastMsg, setToastMsg] = useState<string>('');
 
   useEffect(() => {
     carList();
@@ -64,13 +68,21 @@ export default function Home() {
 
   return (
     <div className="p-5 sm:px-10 md:px-20">
-      <Hero />
-      <SearchInput />
-      <CarsFilterOptions carsOrgList={carsOrgList} 
-        setBrandType={(value: string) => filterCarList(value)}
-        sortCarsByPrice={(orderingCriteria: string) => sortCarsByPrice(orderingCriteria)}
-      />
-      <CarsListView carLists={carsList}/>
+        <Hero />
+        <SearchInput />
+        <CarsFilterOptions carsOrgList={carsOrgList} 
+          setBrandType={(value: string) => filterCarList(value)}
+          sortCarsByPrice={(orderingCriteria: string) => sortCarsByPrice(orderingCriteria)}
+        />
+        <BookingCreatedFlagContext.Provider value={{
+          showToastMsg,
+          setShowToastMsg,
+          toastMsg,
+          setToastMsg
+        }}>
+          <CarsListView carLists={carsList}/>
+          { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
+      </BookingCreatedFlagContext.Provider>
     </div>  
   )
 }

@@ -34,16 +34,17 @@ function CarsFilterOptions({carsOrgList, setBrandType, sortCarsByPrice}: CarsOrg
         <h2>Explore our cars you might like</h2>
       </div>
       <div className='flex gap-5'>
-        <select className="select select-bordered w-full max-w-xs"
+        <select className="select select-bordered w-full max-w-xs" defaultValue='price'
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => sortCarsByPrice(e.target.value)}>
-            <option disabled selected>Price</option>
+            <option value='price'>Price</option>
             <option value={'ascending'}>Min to Max</option>
             <option value={'descending'}>Max to Min</option>
         </select>
-        <select className="select select-bordered w-full max-w-xs hidden md:block"
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBrandType(e.target.value)}>            <option disabled selected>Manufacturer</option>
+        <select className="select select-bordered w-full max-w-xs hidden md:block" defaultValue='manufacturer'
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBrandType(e.target.value)}>
+            <option value='manufacturer'>Manufacturer</option>
             {brandList?.map((brand: CarBrand, index: number) => (
-              <option key={index}>{brand}</option>
+              <option key={index} value={brand}>{brand}</option>
             ))}
         </select>
       </div>

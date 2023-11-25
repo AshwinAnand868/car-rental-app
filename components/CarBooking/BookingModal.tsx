@@ -20,7 +20,7 @@ function BookingModal({selectedCar}: BookingModalProps) {
             <CarCard car={selectedCar} />
           </div>
           <div>
-            <Form />
+            <Form car={selectedCar}/>
           </div>
         </div>
     </div>

@@ -25,8 +25,8 @@ function CarsListView(props: CarsList) {
               }}>
                 <CarCard car={car}/>
             </div>
-        )): [1,2,3,4,5,6,7,8].map((item) => (
-          <CarCardSkelton/>
+        )): [1,2,3,4,5,6,7,8].map((_, index) => (
+          <CarCardSkelton key={index}/>
         ))}
 
       <dialog id="booking_modal" className="modal">

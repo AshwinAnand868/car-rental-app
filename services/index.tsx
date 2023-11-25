@@ -38,9 +38,14 @@ export const getStoreLocations = async () => {
 }
 
 export const createBooking = async (formData: FormDataModel) => {
+
+    // when the new resource or car booking object will be inserted into the database,
+    // then as a result, it's id will be returned, though one can return any other 
+    // thing like user name etc.
+
     const mutationQuery = gql`
-        mutation MyMutation {
-            createBooking (
+        mutation CreateCarBooking {
+            createCarBooking (
                 data: {
                     userName: "` + formData.userName + `",
                     pickUpDate: "` + formData.pickUpDate + `",
@@ -48,6 +53,7 @@ export const createBooking = async (formData: FormDataModel) => {
                     pickUpTime: "` + formData.pickUpTime + `",
                     dropOffTime: "` + formData.dropOffTime + `",
                     contactNumber: "` + formData.contactNumber + `",
+                    location: "` + formData.location + `",
                     carId: {
                         connect : {
                             id: "` + formData.carId + `"

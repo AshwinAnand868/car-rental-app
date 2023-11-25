@@ -1,7 +1,7 @@
 export interface FormDataModel {
     location: string,
-    pickUpDate: string,
-    dropOffDate: string,
+    pickUpDate: Date,
+    dropOffDate: Date,
     pickUpTime: string,
     dropOffTime: string,
     contactNumber: string,
