@@ -90,7 +90,7 @@ export default function Home() {
         }}>
           <CarsListView carLists={carsList}/>
           { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
-      </BookingCreatedFlagContext.Provider>
+        </BookingCreatedFlagContext.Provider>
     </div>  
   )
 }

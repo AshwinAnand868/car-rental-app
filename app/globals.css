@@ -19,3 +19,23 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+/* Shifting the default calendar icon on the home page to the left of date input */
+.search-date {
+  position: relative;
+}
+
+.search-date input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+}
+
+.search-date input::-webkit-datetime-edit {
+  position: relative;
+  left: 10px;
+}
+
+.search-date input::-webkit-datetime-edit-fields-wrapper {
+  position: relative;
+  left: 10px;
+}

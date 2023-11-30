@@ -16,7 +16,7 @@ function CarsListView(props: CarsList) {
   }, [props.carLists]);
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {!isLoading ? props.carLists.map((car: Car, index: number) => (
             <div key={index} 
               onClick={() => {

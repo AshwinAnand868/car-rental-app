@@ -1,7 +1,6 @@
 import Car from '@/models/Car'
 import CarBrand from '@/models/CarBrand'
-import CarsList from '@/models/CarsList'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface CarsOrgListProp {
   carsOrgList: Array<Car>,
@@ -28,21 +27,21 @@ function CarsFilterOptions({carsOrgList, setBrandType, sortCarsByPrice}: CarsOrg
   }, [carsOrgList]);
 
   return (
-    <div className='flex mt-10 items-center justify-between'>
-      <div>
+    <div className='flex flex-col sm:flex-row mt-8 mb-5 items-center justify-between'>
+      <div className='text-center'>
         <h2 className='text-[30px] font-bold'>Cars Catalog</h2>
         <h2>Explore our cars you might like</h2>
       </div>
-      <div className='flex gap-5'>
+      <div className='flex gap-5 mt-5'>
         <select className="select select-bordered w-full max-w-xs" defaultValue='price'
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => sortCarsByPrice(e.target.value)}>
-            <option value='price'>Price</option>
+            <option value='price' disabled>Price</option>
             <option value={'ascending'}>Min to Max</option>
             <option value={'descending'}>Max to Min</option>
         </select>
-        <select className="select select-bordered w-full max-w-xs hidden md:block" defaultValue='manufacturer'
+        <select className="select select-bordered w-full max-w-xs md:block" defaultValue='manufacturer'
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBrandType(e.target.value)}>
-            <option value='manufacturer'>Manufacturer</option>
+            <option value='manufacturer' disabled>Manufacturer</option>
             {brandList?.map((brand: CarBrand, index: number) => (
               <option key={index} value={brand}>{brand}</option>
             ))}
