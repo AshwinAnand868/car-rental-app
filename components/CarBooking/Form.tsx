@@ -68,7 +68,7 @@ function Form({car}: FormProps) {
                 ))}
             </select>
         </div>
-        <div className='flex gap-5 mb-5'>
+        <div className='flex flex-col sm:flex-row gap-5 mb-5'>
             <div className='flex flex-col w-full'>
                 <label className='text-gray-400'>Pick Up Date</label>
                 <input type="date" placeholder='Type here' 
