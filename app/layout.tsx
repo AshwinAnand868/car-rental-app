@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider, SignedIn, SignedOut, SignIn, UserButton } from '@clerk/nextjs'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/app/NavBar/NavBar'
 
 const inter = Raleway({ subsets: ['latin'] })
 

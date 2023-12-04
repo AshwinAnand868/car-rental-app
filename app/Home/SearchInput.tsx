@@ -13,7 +13,7 @@ function SearchInput() {
                         </svg>
                         <input type='text'
                             placeholder='Location'
-                            className='outline-none bg-transparent p-2' />
+                            className='outline-none bg-transparent p-2 text-gray-400' />
                     </div>
                     <hr className='block sm:hidden w-full h-0.5 mx-auto bg-gray-300 border-0 rounded'/>
                     <div className="search-date">
