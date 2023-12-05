@@ -35,7 +35,7 @@ function NavBar() {
     return (
         <div className={navbarClassNames}>
             <Burger openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
-            <Image src='/logo.png' alt="Logo" width={100} height={100}/>
+            <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
             <Menu  openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
             <UserButton />
         </div>
