@@ -14,10 +14,10 @@
 
 .search-date input::-webkit-datetime-edit {
   position: relative;
-  left: 10px;
+  left: 8px;
 }
 
 .search-date input::-webkit-datetime-edit-fields-wrapper {
   position: relative;
-  left: 10px;
+  left: 8px;
 }

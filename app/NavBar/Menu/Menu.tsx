@@ -17,8 +17,6 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
     const handleLinkClick = () => {
         setOpenSideMenu(false);
-        console.log(activeSegment);
-        
     }
 
     const menuClassNames = classNames(
@@ -26,19 +24,19 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
         'md:flex',
         'md:gap-5',
         {
-            'hide-custom-menu': openSideMenu,
+            'show-custom-menu': openSideMenu,
         }
     )
 
     return (
         <div className={menuClassNames}>
-            <Link href='../Home'
-                className={"nav-link " + (activeSegment === "Home" ? "active-link" : "")}
+            <Link href='../'
+                className={"nav-link " + (activeSegment === null ? "active-link" : "")}
                 aria-label='home'
                 onClick={handleLinkClick}
                 ref={ref}>Home</Link>
             <Link 
-                href='../About' 
+                href='../History' 
                 className={"nav-link " + (activeSegment === "History" ? "active-link" : "")}
                 aria-label='history'
                 onClick={handleLinkClick}>History</Link>

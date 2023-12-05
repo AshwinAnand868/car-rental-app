@@ -19,13 +19,12 @@
     .custom-menu {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         background-color: white;
         height: 100vh;
         text-align: left;
         padding: 1rem;
         position: absolute;
-        top: 100px;
+        top: 88px;
         left: 0;
         transition: transform 0.3s ease-in-out;
         width: 80%; 
@@ -33,7 +32,7 @@
         transform: translateX(-100%);
     }
 
-    .hide-custom-menu {
+    .show-custom-menu {
         transform: translateX(0);
     }
 }
