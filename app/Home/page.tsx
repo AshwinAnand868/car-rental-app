@@ -19,6 +19,7 @@ export default function Home() {
   const selectedBrand = useRef('');
   const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string>('');
+  const  scrollToCarList = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     carList();
@@ -75,7 +76,7 @@ export default function Home() {
 
   return (
     <div className="p-5 sm:px-10 md:px-20">
-        <Hero />
+        <Hero scrollToCarListRef={scrollToCarList} />
         <SearchInput />
         <CarsFilterOptions carsOrgList={carsOrgList} 
           setBrandType={(value: string) => filterCarList(value)}
@@ -87,7 +88,9 @@ export default function Home() {
           toastMsg,
           setToastMsg
         }}>
-          <CarsListView carLists={carsList}/>
+          <div className='mt-2' ref={scrollToCarList}>
+            <CarsListView carLists={carsList}/>
+          </div>
           { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
         </BookingCreatedFlagContext.Provider>
     </div>  

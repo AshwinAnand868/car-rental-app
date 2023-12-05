@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { MutableRefObject, Ref } from 'react'
 import Image from 'next/image'
 
-function Hero() {
+interface HeroProps {
+    scrollToCarListRef: MutableRefObject<HTMLDivElement | null>
+}
+
+function Hero({scrollToCarListRef}: HeroProps) {
+
+  const scrollToCarListAction = (elementRef: MutableRefObject<HTMLDivElement | null>) => {
+    elementRef.current?.scrollIntoView({
+        behavior: 'smooth'
+    });
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
@@ -12,7 +23,11 @@ function Hero() {
             <h2 className="text-[20px] text-gray-500 pr-20 mt-5">
                 Book the selected car effortlessly, Pay for driving only, Book the Car Now
             </h2>
-            <button className="p-2 mt-5 bg-blue-500 text-white px-4 rounded-full hover:scale-105 transition-all">Explore Cars</button>
+            <button 
+                className="p-2 mt-5 bg-blue-500 text-white px-4 rounded-full hover:scale-105 transition-all"
+                onClick={() => scrollToCarListAction(scrollToCarListRef)}>
+                    Explore Cars
+            </button>
         </div>
         <div>
             <Image src='/hero.png'
