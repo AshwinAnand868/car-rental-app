@@ -10,6 +10,7 @@
 .search-date input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 0;
+  cursor: pointer;
 }
 
 .search-date input::-webkit-datetime-edit {
