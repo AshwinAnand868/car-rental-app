@@ -41,8 +41,7 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
             <Popup
                 trigger={
                     <h2 className={"nav-link " + (activeSegment === "History" ? "active-link" : "")}
-                        aria-label='history'
-                        onClick={handleLinkClick}>History</h2>
+                        aria-label='history'>History</h2>
                 }
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'
@@ -51,8 +50,7 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
             <Popup
                 trigger={
                     <h2 className={"nav-link " + (activeSegment === "ContactUs" ? "active-link" : "")}
-                        aria-label='contact us'
-                        onClick={handleLinkClick}>Contact Us</h2>
+                        aria-label='contact us'>Contact Us</h2>
                 }
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'
