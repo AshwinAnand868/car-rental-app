@@ -1,6 +1,6 @@
 import Car from '@/models/Car';
 import React from 'react'
-import CarCard from '../Home/CarCard';
+import CarCard from '../home/CarCard';
 import Form from './Form';
 
 interface BookingModalProps {

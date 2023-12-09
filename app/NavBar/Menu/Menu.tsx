@@ -32,7 +32,7 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
     return (
         <div className={menuClassNames}>
-            <Link href='../'
+            <Link href='/'
                 className={"nav-link " + (activeSegment === null ? "active-link" : "")}
                 aria-label='home'
                 onClick={handleLinkClick}

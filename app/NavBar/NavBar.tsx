@@ -1,11 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { UserButton } from '@clerk/nextjs'
-import Burger from './Burger/Burger';
-import Menu from './Menu/Menu';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link';
 import classNames from 'classnames';
+import Burger from './burger/Burger';
+import Menu from './menu/Menu';
 
 function NavBar() { 
     const [openSideMenu, setOpenSideMenu] = useState<boolean>(false);
@@ -37,7 +37,25 @@ function NavBar() {
             <Burger openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
             <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
             <Menu  openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
-            <UserButton />
+            <SignedIn>
+                <UserButton />
+            </SignedIn>
+            <SignedOut>
+                <div>
+                    <Link href='sign-in' className='rounded-2xl border border-gray-400 px-4 py-2 hover:bg-blue-200 mr-4'>
+                        Sign In
+                    </Link>
+                    <Link href='sign-up' className='rounded-2xl border border-gray-400 px-4 py-2 hover:bg-blue-200 mr-4'>
+                        Sign Up
+                    </Link>
+                </div>
+                
+                {/* <SignInButton>
+                    <button className='rounded border border-gray-400 px-3 py-0.5'>
+                        Sign in
+                    </button>
+                </SignInButton> */}
+            </SignedOut>
         </div>
     )
 }
