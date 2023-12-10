@@ -3,7 +3,7 @@ import CarCard from './CarCard';
 import Car from '@/models/Car'
 import CarsList from '@/models/CarsList'
 import CarCardSkelton from './CarCardSkelton';
-import BookingModal from '../car-booking/BookingModal';
+import BookingModal from '../CarBooking/BookingModal';
 
 function CarsListView(props: CarsList) {
   const [isLoading, setIsLoading] = useState<boolean>(true);

@@ -1,10 +1,10 @@
 "use client"
-import CarsFilterOptions from '@/app/home/CarsFilterOptions'
-import Hero from '@/app/home/Hero'
-import SearchInput from '@/app/home/SearchInput'
+import CarsFilterOptions from '@/app/Home/CarsFilterOptions'
+import Hero from '@/app/Home/Hero'
+import SearchInput from '@/app/Home/SearchInput'
 import { useEffect, useRef, useState } from 'react'
 import { getCarsList } from '@/services'
-import CarsListView from '@/app/home/CarsListView'
+import CarsListView from '@/app/Home/CarsListView'
 import Car from '@/models/Car'
 import CarsList from '@/models/CarsList';
 import ToastMsg from '@/app/ToastMsgView'
