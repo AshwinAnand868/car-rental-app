@@ -24,7 +24,7 @@ function NavBar() {
         'flex',
         'items-center',
         'justify-between',
-        'p-5',
+        'pt-5 px-5 pb-[0.8rem]',
         'shadow-sm',
         'border-b',
         {
@@ -38,7 +38,7 @@ function NavBar() {
             <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
             <Menu  openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
             <SignedIn>
-                <UserButton />
+                <UserButton afterSignOutUrl='/'/>
             </SignedIn>
             <SignedOut>
                 <div>
