@@ -36,7 +36,7 @@ function NavBar() {
         <div className={navbarClassNames}>
             <Burger openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
             <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
-            <Menu  openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
+            <Menu openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
             <SignedIn>
                 <UserButton afterSignOutUrl='/'/>
             </SignedIn>

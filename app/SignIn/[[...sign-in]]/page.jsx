@@ -2,7 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 
 const SignInPage = () => {
     return (
-        <div className="flex items-center justify-center mt-[1rem]">
+        <div className="flex items-center justify-center mt-[4rem] md:mt-[1rem]">
             <SignIn 
                 appearance={{
                     elements: {
