@@ -6,10 +6,11 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import Burger from './Burger/Burger';
 import Menu from './Menu/Menu';
+import { usePathname } from 'next/navigation';
 
 function NavBar() { 
     const [openSideMenu, setOpenSideMenu] = useState<boolean>(false);
-
+    const currentPath = usePathname();
     useEffect(() => {
         if(openSideMenu) {
             document.body.style.overflow = 'hidden';
@@ -42,10 +43,10 @@ function NavBar() {
             </SignedIn>
             <SignedOut>
                 <div>
-                    <Link href='../SignIn' className='rounded-2xl border border-gray-400 px-4 py-2 hover:bg-blue-200 mr-4'>
+                    <Link href='../SignIn' className={'nav-link ' + (currentPath === "/SignIn" ? "md:active-link" : "")}>
                         Sign In
                     </Link>
-                    <Link href='../SignUp' className='rounded-2xl border border-gray-400 px-4 py-2 hover:bg-blue-200 mr-4'>
+                    <Link href='../SignUp' className={'nav-link ' + (currentPath === "/SignUp" ? "md:active-link" : "")}>
                         Sign Up
                     </Link>
                 </div>

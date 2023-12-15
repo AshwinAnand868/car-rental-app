@@ -1,8 +1,10 @@
-import React, { useRef, useState } from "react";
+"use client"
+import React, { useRef } from "react";
 import Link from 'next/link';
 import './Menu.css'
+import '../NavBar.css'
 import classNames from "classnames";
-import { useSelectedLayoutSegment } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { Popup } from "semantic-ui-react";
 import 'semantic-ui-css/components/popup.min.css';
 
@@ -14,7 +16,7 @@ interface MenuProps {
 export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
     const ref = useRef<HTMLAnchorElement>(null);
-    const activeSegment = useSelectedLayoutSegment()
+    const currentPath = usePathname();
 
     const handleLinkClick = () => {
         setOpenSideMenu(false);
@@ -33,14 +35,14 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
     return (
         <div className={menuClassNames}>
             <Link href='/'
-                className={"nav-link " + (activeSegment === null ? "active-link" : "")}
+                className={"nav-link " + (currentPath === "/" ? "active-link" : "")}
                 aria-label='home'
                 onClick={handleLinkClick}
                 ref={ref}>Home</Link>
 
             <Popup
                 trigger={
-                    <h2 className={"nav-link " + (activeSegment === "History" ? "active-link" : "")}
+                    <h2 className={"nav-link " + (currentPath === "/History" ? "active-link" : "")}
                         aria-label='history'>History</h2>
                 }
                 content='Feature Coming Soon &#128521;'
@@ -49,8 +51,8 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
             <Popup
                 trigger={
-                    <h2 className={"nav-link " + (activeSegment === "ContactUs" ? "active-link" : "")}
-                        aria-label='contact us'>Contact Us</h2>
+                    <h2 className={"nav-link " + (currentPath === "/ContactUs" ? "active-link" : "")}
+                        aria-label='contact'>Contact</h2>
                 }
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'

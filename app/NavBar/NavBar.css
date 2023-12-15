@@ -1,0 +1,24 @@
+.nav-link {
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.nav-link::after {
+    @apply content-[''] bg-blue-500 h-[0.25rem] absolute w-[0%] left-[12px] top-[1.8rem] rounded-xl duration-200
+}
+
+.nav-link:hover::after {
+    @apply w-[66%]
+}
+
+.active-link {
+    @apply underline underline-offset-4 decoration-blue-500 decoration-4
+}
+
+@media (max-width: 767px) {
+    .nav-link:hover::after {
+        width: 55px;
+    }
+}
