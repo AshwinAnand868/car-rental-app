@@ -43,10 +43,10 @@ function NavBar() {
             </SignedIn>
             <SignedOut>
                 <div>
-                    <Link href='../SignIn' className={'nav-link ' + (currentPath === "/SignIn" ? "md:active-link" : "")}>
+                    <Link href='../SignIn' className={'nav-link ' + (currentPath === "/SignIn" ? 'active-link' : '')}>
                         Sign In
                     </Link>
-                    <Link href='../SignUp' className={'nav-link ' + (currentPath === "/SignUp" ? "md:active-link" : "")}>
+                    <Link href='../SignUp' className={'nav-link ' + (currentPath === "/SignUp" ? 'active-link' : '')}>
                         Sign Up
                     </Link>
                 </div>
