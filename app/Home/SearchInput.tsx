@@ -2,6 +2,7 @@ import { Popup } from 'semantic-ui-react';
 import 'semantic-ui-css/components/popup.min.css';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
+import SearchBar from '../SearchBar/SearchBar';
 
 function SearchInput() {
 
@@ -49,11 +50,20 @@ function SearchInput() {
                     onDismiss={closeModalHandler}
                     title={'Select your preferred store location...'}
                 >
-                    <div className='my-4 w-[800px] max-w-full h-[600px]'>
+                    {/* <div className='my-4 max-w-full'>
                         <p>This is where you will find a search bar to search and select our different store locations and also a map on the right hand side to see and select your preferred store location directly!</p>
-                    </div>
-                </Modal>
+                    </div> */}
 
+                    <div className='grid grid-cols-1 md:grid-cols-2 px-6 md:px-10 max-w-full mt-5 md:w-[800px] h-[650px] md:[h-550px]'>
+                        <div>
+                            <SearchBar />
+                        </div>
+                        <div>
+                            Google Map
+                        </div>
+                    </div>
+
+                </Modal>
             </div>
         </div>
     )
