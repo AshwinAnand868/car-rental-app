@@ -1,4 +1,4 @@
-@media (max-width: 639px) {
+@media (max-width: 767px) {
     .custom-menu {
         display: flex;
         flex-direction: column;
