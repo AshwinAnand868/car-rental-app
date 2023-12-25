@@ -1,11 +1,11 @@
 import axios from "axios";
 import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const BASE_URL = 'https://maps.googleapis.com/maps/api/place';
 const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
     try {
         const url = new URL(req.url as string)
         const searchParams = new URLSearchParams(url.search);
