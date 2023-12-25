@@ -1,12 +1,23 @@
 import { Popup } from 'semantic-ui-react';
 import 'semantic-ui-css/components/popup.min.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import SearchBar from '../SearchBar/SearchBar';
 import CategoryList from '../Category/CategoryList';
 import BusinessList from '../BusinessList/BusinessList';
+import { getNearByPlace } from '@/services';
 
 function SearchInput() {
+
+    useEffect(() => {
+        nearByPlace();
+    }, []);
+
+    const nearByPlace = () => {
+        getNearByPlace('gas_station', 35.5827712, -80.8484864).then(response => {
+            console.log(response);
+        });
+    }
 
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -52,10 +63,6 @@ function SearchInput() {
                     onDismiss={closeModalHandler}
                     title={'Select your preferred store location...'}
                 >
-                    {/* <div className='my-4 max-w-full'>
-                        <p>This is where you will find a search bar to search and select our different store locations and also a map on the right hand side to see and select your preferred store location directly!</p>
-                    </div> */}
-
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10 max-w-full mt-5 md:w-[800px] h-[650px] md:h-[600px]'>
                         <div>
                             <SearchBar />

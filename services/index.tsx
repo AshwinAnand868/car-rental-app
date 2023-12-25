@@ -1,4 +1,5 @@
 import { FormDataModel } from "@/models/FormDataModel";
+import axios from "axios";
 import request, { gql } from "graphql-request";
 
 const MASTER_URL = 'https://api-ca-central-1.hygraph.com/v2/clos8mjcpt9wp01t73w7ta0ha/master';
@@ -69,3 +70,5 @@ export const createBooking = async (formData: FormDataModel) => {
     const result = await request(MASTER_URL, mutationQuery);
     return result;
 }
+
+export const getNearByPlace = (category: string, lat: number, lng: number) => axios.get('/api/map?category='+category+'&lat='+lat+'&lng='+lng);

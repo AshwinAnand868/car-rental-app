@@ -15,7 +15,7 @@ const CategoryList = () => {
 
     return (
         <div>
-            <h2 className='text-[20px] mt-3 font-bold mb-3'>Select Your category</h2>
+            <h2 className='md:text-[1.5rem] text-[0.8rem] mt-3 font-bold mb-3'>Select Your category</h2>
             <div className='flex gap-6 mb-5'>
                 {category?.map(((item, index) => (
                     <div key={index}>
