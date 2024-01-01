@@ -6,13 +6,13 @@ const CategoryListData: Array<Category> = [
     {
         id: 1,
         name: 'Nearest stores',
-        value: 'nearest_locations',
+        value: 'nearest',
         icon: '/location.png'
     },
     {
         id: 2,
         name: 'Highly Rated',
-        value: 'rated_locations',
+        value: 'rating',
         icon: '/satisfaction.png'
     }
 ]

@@ -34,6 +34,7 @@ export const getStoreLocations = async () => {
             name,
             location,
             nameWithLocation,
+            rating,
             image {
                 url
             }

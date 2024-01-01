@@ -1,6 +1,6 @@
 import { Popup } from 'semantic-ui-react';
 import 'semantic-ui-css/components/popup.min.css';
-import { useContext, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import SearchBar from '../SearchBar/SearchBar';
 import CategoryList from '../Category/CategoryList';
@@ -8,18 +8,31 @@ import BusinessList from '../BusinessList/BusinessList';
 import { getNearByPlace } from '@/services';
 import { StoreLocationsContext } from '@/context/StoreLocationsContext';
 import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
+import Address from '@/models/Address';
 
 function SearchInput() {
 
-    // const [businessList, setBusinessList] = useState([]);
-
     const {
-        storesLocs
+        storesLocs,
+        setStoresLocs
     } = useContext(StoreLocationsContext) as StoreLocationsContextType;
 
-    // useEffect(() => {
-    //     nearByPlace();
-    // }, []);
+    const [businessList, setBusinessList] = useState<Address[]>([]); // local state to force a re-rendewr
+
+    const sortStoreLocsByCategory = (value: string) => {
+        let tempArray: Address[] = [...storesLocs];
+        if(value === 'rating') {
+            tempArray.sort((a: Address, b: Address) =>
+                b.rating - a.rating
+            );
+        }
+            
+        setStoresLocs(tempArray);
+    }
+
+    useEffect(() => {
+        setBusinessList(storesLocs);
+    }, [storesLocs]);
 
     // const nearByPlace = () => {
     //     getNearByPlace('gas_station', 35.5827712, -80.8484864).then(response => {
@@ -71,11 +84,11 @@ function SearchInput() {
                     onDismiss={closeModalHandler}
                     title={'Select your preferred store location...'}
                 >
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10 max-w-full mt-5 md:w-[800px] h-[650px] md:h-[600px]'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10 max-w-full mt-2 3xl:mt-5 3xl:mb-5 md:w-[800px] h-[650px] md:h-[600px] max-h-641px'>
                         <div>
                             <SearchBar />
-                            <CategoryList />
-                            <BusinessList businessListData={storesLocs} />
+                            <CategoryList setSelectedCategory={(value: string) => sortStoreLocsByCategory(value)} />
+                            <BusinessList businessListData={businessList} />
                         </div>
                         <div>
                             Google Map

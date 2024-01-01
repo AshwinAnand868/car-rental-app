@@ -91,7 +91,8 @@ export default function Home() {
     <div className="p-5 sm:px-10 md:px-20">
         <Hero scrollToCarListRef={scrollToCarList} />
         <StoreLocationsContext.Provider value={{
-          storesLocs
+          storesLocs,
+          setStoresLocs
         }}>
           <SearchInput />
           <CarsFilterOptions carsOrgList={carsOrgList} 
