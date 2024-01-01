@@ -3,18 +3,22 @@ import CarsFilterOptions from '@/app/Home/CarsFilterOptions'
 import Hero from '@/app/Home/Hero'
 import SearchInput from '@/app/Home/SearchInput'
 import { useEffect, useRef, useState } from 'react'
-import { getCarsList } from '@/services'
+import { getCarsList, getStoreLocations } from '@/services'
 import CarsListView from '@/app/Home/CarsListView'
 import Car from '@/models/Car'
 import CarsList from '@/models/CarsList';
 import ToastMsg from '@/app/ToastMsgView'
 import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext'
+import { StoreLocationsContext } from '@/context/StoreLocationsContext'
+import Address from '@/models/Address'
+import StoreLocation from '@/models/StoreLocation'
 
 export default function Home() {
 
   const ALL_AVAILABLE_BRANDS = 'All Available Brands';
   const [carsList, setCarsList] = useState<Array<Car>>([]);
   const [carsOrgList, setCarsOrgList] = useState<Array<Car>>([]);
+  const [storesLocs, setStoresLocs] = useState<Array<Address>>([]);
   const sortingOrder = useRef('');
   const selectedBrand = useRef('');
   const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
@@ -32,6 +36,15 @@ export default function Home() {
       }, 5000);
     }
   }, [showToastMsg]);
+
+  useEffect(() => {
+    fetchStoreLocations();
+  }, []);
+
+  const fetchStoreLocations = async () => {
+    const locations = await getStoreLocations() as StoreLocation;
+    setStoresLocs(locations.storesLocations);
+  }
 
   const carList = async () => {
     const result = await getCarsList() as CarsList;
@@ -77,22 +90,26 @@ export default function Home() {
   return (
     <div className="p-5 sm:px-10 md:px-20">
         <Hero scrollToCarListRef={scrollToCarList} />
-        <SearchInput />
-        <CarsFilterOptions carsOrgList={carsOrgList} 
-          setBrandType={(value: string) => filterCarList(value)}
-          sortCarsByPrice={(orderingCriteria: string) => sortCarsByPrice(orderingCriteria)}
-        />
-        <BookingCreatedFlagContext.Provider value={{
-          showToastMsg,
-          setShowToastMsg,
-          toastMsg,
-          setToastMsg
+        <StoreLocationsContext.Provider value={{
+          storesLocs
         }}>
-          <div className='mt-2' ref={scrollToCarList}>
-            <CarsListView carLists={carsList}/>
-          </div>
-          { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
-        </BookingCreatedFlagContext.Provider>
+          <SearchInput />
+          <CarsFilterOptions carsOrgList={carsOrgList} 
+            setBrandType={(value: string) => filterCarList(value)}
+            sortCarsByPrice={(orderingCriteria: string) => sortCarsByPrice(orderingCriteria)}
+          />
+          <BookingCreatedFlagContext.Provider value={{
+            showToastMsg,
+            setShowToastMsg,
+            toastMsg,
+            setToastMsg
+          }}>
+            <div className='mt-2' ref={scrollToCarList}>
+              <CarsListView carLists={carsList}/>
+            </div>
+            { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
+          </BookingCreatedFlagContext.Provider>
+        </StoreLocationsContext.Provider>
     </div>  
   )
 }

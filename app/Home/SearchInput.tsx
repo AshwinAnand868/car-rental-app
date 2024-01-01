@@ -1,23 +1,31 @@
 import { Popup } from 'semantic-ui-react';
 import 'semantic-ui-css/components/popup.min.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import SearchBar from '../SearchBar/SearchBar';
 import CategoryList from '../Category/CategoryList';
 import BusinessList from '../BusinessList/BusinessList';
 import { getNearByPlace } from '@/services';
+import { StoreLocationsContext } from '@/context/StoreLocationsContext';
+import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
 
 function SearchInput() {
 
-    useEffect(() => {
-        nearByPlace();
-    }, []);
+    // const [businessList, setBusinessList] = useState([]);
 
-    const nearByPlace = () => {
-        getNearByPlace('gas_station', 35.5827712, -80.8484864).then(response => {
-            console.log(response);
-        });
-    }
+    const {
+        storesLocs
+    } = useContext(StoreLocationsContext) as StoreLocationsContextType;
+
+    // useEffect(() => {
+    //     nearByPlace();
+    // }, []);
+
+    // const nearByPlace = () => {
+    //     getNearByPlace('gas_station', 35.5827712, -80.8484864).then(response => {
+    //         setBusinessList(response.data.results);
+    //     });
+    // }
 
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -67,7 +75,7 @@ function SearchInput() {
                         <div>
                             <SearchBar />
                             <CategoryList />
-                            <BusinessList />
+                            <BusinessList businessListData={storesLocs} />
                         </div>
                         <div>
                             Google Map

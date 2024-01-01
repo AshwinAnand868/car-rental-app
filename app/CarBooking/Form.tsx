@@ -1,18 +1,18 @@
 import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext';
 import Car from '@/models/Car';
 import { FormDataModel } from '@/models/FormDataModel';
-import StoreLocation from '@/models/StoreLocation';
-import { createBooking, getStoreLocations } from '@/services';
+import { createBooking } from '@/services';
 import React, { useContext, useEffect, useState } from 'react'
 import Address from '@/models/Address';
-import BookingCreatedFlagContextType from '@/models/BookingCreatedFlagContextType';
+import BookingCreatedFlagContextType from '@/context-models/BookingCreatedFlagContextType';
+import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
+import { StoreLocationsContext } from '@/context/StoreLocationsContext';
 
 interface FormProps {
   car: Car
 }
 
 function Form({car}: FormProps) {
-  const [storeLocation, setStoreLocation] = useState<StoreLocation>();
   const [formValue, setFormValue] = useState<FormDataModel>({
     location: '',
     pickUpDate: new Date(),
@@ -31,14 +31,9 @@ function Form({car}: FormProps) {
     setToastMsg
   } = useContext(BookingCreatedFlagContext) as BookingCreatedFlagContextType;
   
-  useEffect(() => {
-    fetchStoreLocations();
-  }, []);
-
-  const fetchStoreLocations = async () => {
-    const locations = await getStoreLocations() as StoreLocation;
-    setStoreLocation(locations);
-  }
+  const {
+    storesLocs
+  } = useContext(StoreLocationsContext) as StoreLocationsContextType;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormValue({
@@ -63,8 +58,8 @@ function Form({car}: FormProps) {
             <select className="select select-bordered w-full max-w-lg"
             name="location" onChange={handleChange} defaultValue='pickupLocation'>
                 <option value='pickupLocation'>Pickup Location</option>
-                {storeLocation && storeLocation.storesLocations.map((address: Address, index: number) => (
-                    <option key={index} value={address?.address}>{address?.address}</option>
+                {storesLocs && storesLocs.map((address: Address, index: number) => (
+                    <option key={index} value={address?.location}>{address?.location}</option>
                 ))}
             </select>
         </div>

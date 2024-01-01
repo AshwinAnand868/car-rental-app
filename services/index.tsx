@@ -29,7 +29,14 @@ export const getStoreLocations = async () => {
     const query = gql`
         query storeLocation {
           storesLocations {
-              address
+            latitude,
+            longitude,
+            name,
+            location,
+            nameWithLocation,
+            image {
+                url
+            }
           }
         }
     `
@@ -71,4 +78,4 @@ export const createBooking = async (formData: FormDataModel) => {
     return result;
 }
 
-export const getNearByPlace = (category: string, lat: number, lng: number) => axios.get('/api/map?category='+category+'&lat='+lat+'&lng='+lng);
+export const getNearByPlace = (category: string, lat: number, lng: number) => axios.get('/api/map?category=' + category + '&lat=' + lat + '&lng=' + lng);
