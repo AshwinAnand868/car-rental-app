@@ -9,6 +9,8 @@ import { getNearByPlace } from '@/services';
 import { StoreLocationsContext } from '@/context/StoreLocationsContext';
 import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
 import Address from '@/models/Address';
+import { UserLocationContext } from '@/context/UserLocationContext';
+import UserLocationContextType from '@/context-models/UserLocationContextType';
 
 function SearchInput() {
 
@@ -16,6 +18,11 @@ function SearchInput() {
         storesLocs,
         setStoresLocs
     } = useContext(StoreLocationsContext) as StoreLocationsContextType;
+
+    const {
+        userLocation,
+        setUserLocation
+    } = useContext(UserLocationContext) as UserLocationContextType;
 
     const [businessList, setBusinessList] = useState<Address[]>([]); // local state to force a re-rendewr
 
