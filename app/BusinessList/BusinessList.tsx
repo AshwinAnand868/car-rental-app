@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BusinessItem from './BusinessItem';
 import Address from '@/models/Address';
 import BusinessItemSkelton from './BusinessItemSkeleton';
@@ -10,6 +10,21 @@ interface BusinessListProps {
 const BusinessList = ({businessListData}: BusinessListProps) => {
 
     const [count, setCount] = useState<number>(0);
+    const [loading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 400);
+    }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 400);
+        setCount(0);
+    }, [businessListData]);
 
     return (
         <div className='mt-6'>
@@ -36,13 +51,18 @@ const BusinessList = ({businessListData}: BusinessListProps) => {
                 </span>
             </h2>
             <div>
-                {businessListData.map((addr: Address, index: number) =>
-                index >= count && index < count + 3 && ( // to show 3 stores at first
+                {!loading ? 
+                businessListData.map((addr: Address, index: number) =>
+                    index >= count && index < count + 3 && ( // to show 3 stores at first
                     <div key={index}>
                         <BusinessItem store={addr}/>
                     </div>
+                )) : 
+                [1,2,3].map((item, index) => (
+                    <BusinessItemSkelton key={index}/>
                 ))}
             </div>
+            
         </div>
     )
 }
