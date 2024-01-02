@@ -9,7 +9,7 @@ interface BookingModalProps {
 
 function BookingModal({selectedCar}: BookingModalProps) {
   return (
-    <div className="modal-box w-11/12 max-w-5xl">
+    <div className="modal-box w-11/12 max-w-5xl h-[90vh] max-h-[680px]">
         <div className='border-b-[1px] pb-2'>
           <h3 className='text-[30px] font-light text-gray-400'>
             Rent a Car Now!
