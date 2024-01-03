@@ -4,10 +4,11 @@ import Address from '@/models/Address';
 import BusinessItemSkelton from './BusinessItemSkeleton';
 
 interface BusinessListProps {
+    selectedCategory: string,
     businessListData: Address[]
 }
 
-const BusinessList = ({businessListData}: BusinessListProps) => {
+const BusinessList = ({selectedCategory, businessListData}: BusinessListProps) => {
 
     const [count, setCount] = useState<number>(0);
     const [loading, setIsLoading] = useState<boolean>(true);
@@ -15,20 +16,20 @@ const BusinessList = ({businessListData}: BusinessListProps) => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        }, 400);
+        }, 300);
     }, []);
 
     useEffect(() => {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-        }, 400);
+        }, 300);
         setCount(0);
     }, [businessListData]);
 
     return (
         <div className='mt-6'>
-            <h2 className='md:text-[1.2rem] text-[0.8rem] font-bold flex items-center justify-between'>Nearest Stores
+            <h2 className='md:text-[1.2rem] text-[0.8rem] font-bold flex items-center justify-between'>{selectedCategory}
                 <span className='flex md:gap-3 sm:gap-2'>
                     {count > 0 ? 
                         <svg 

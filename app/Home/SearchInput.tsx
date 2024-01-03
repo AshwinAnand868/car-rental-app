@@ -1,57 +1,81 @@
 import { Popup } from 'semantic-ui-react';
 import 'semantic-ui-css/components/popup.min.css';
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import Modal from '../Modal/Modal';
 import SearchBar from '../SearchBar/SearchBar';
 import CategoryList from '../Category/CategoryList';
 import BusinessList from '../BusinessList/BusinessList';
 import { getNearByPlace } from '@/services';
+import CategoryData from '../Shared/CategoryData';
 import { StoreLocationsContext } from '@/context/StoreLocationsContext';
 import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
 import Address from '@/models/Address';
 import { UserLocationContext } from '@/context/UserLocationContext';
-import UserLocationContextType from '@/context-models/UserLocationContextType';
+import UserLocationContextType, { UserLocation } from '@/context-models/UserLocationContextType';
+import getDistanceFromLatLonInKm from '../Shared/getDistanceFromLatLonInKm';
 
 function SearchInput() {
+
+    const [category, setCategory] = useState<string>('Nearest stores');
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [businessList, setBusinessList] = useState<Address[]>([]); // local state to force a re-rendewr
 
     const {
         storesLocs,
         setStoresLocs
     } = useContext(StoreLocationsContext) as StoreLocationsContextType;
 
-    const {
-        userLocation,
-        setUserLocation
-    } = useContext(UserLocationContext) as UserLocationContextType;
+    const userLocationContext = useContext(UserLocationContext) as UserLocationContextType;
+    let userLocation: UserLocation = {lat: 0, lng: 0};
+    
+    if(userLocationContext && userLocationContext.userLocation) {
+        userLocation.lat = userLocationContext.userLocation.lat;
+        userLocation.lng = userLocationContext.userLocation.lng;
+    }
 
-    const [businessList, setBusinessList] = useState<Address[]>([]); // local state to force a re-rendewr
+    const sortStoreLocsByCategory = (value: string = 'nearest') => {       
+        // execute the below if condition only when the store's distance from user is not collected
+        if(!storesLocs[0]?.distanceFromUser) {
+            setEachStoreDistanceFromUserLoc();
+        }
 
-    const sortStoreLocsByCategory = (value: string) => {
         let tempArray: Address[] = [...storesLocs];
         if(value === 'rating') {
             tempArray.sort((a: Address, b: Address) =>
                 b.rating - a.rating
             );
-        }
+
+            // set the category selected to Highly Rated
+            setCategory(CategoryData.CategoryListData[1].name);
+
+        } else if(value === 'nearest') {
+            tempArray.sort((a: Address, b: Address) =>
+                a.distanceFromUser - b.distanceFromUser
+            );
+
+            // set the category selected to Nearest Stores
+            setCategory(CategoryData.CategoryListData[0].name);
+        }  
             
         setStoresLocs(tempArray);
+    }
+
+    // stores the distances of all the stores from current user location into an array
+    const setEachStoreDistanceFromUserLoc = () =>  {
+        storesLocs.forEach((store: Address) => {
+            store.distanceFromUser = getDistanceFromLatLonInKm(store.latitude, store.longitude, userLocation.lat, userLocation.lng);
+            console.log("Store's distance: " + store.distanceFromUser);
+        });
     }
 
     useEffect(() => {
         setBusinessList(storesLocs);
     }, [storesLocs]);
 
-    // const nearByPlace = () => {
-    //     getNearByPlace('gas_station', 35.5827712, -80.8484864).then(response => {
-    //         setBusinessList(response.data.results);
-    //     });
-    // }
-
-    const [showModal, setShowModal] = useState<boolean>(false);
-
     const openModalHandler = () => {
         setShowModal(true);
         document.body.style.overflow = 'hidden';
+        sortStoreLocsByCategory();
     }
 
     const closeModalHandler = () => {
@@ -95,7 +119,7 @@ function SearchInput() {
                         <div>
                             <SearchBar />
                             <CategoryList setSelectedCategory={(value: string) => sortStoreLocsByCategory(value)} />
-                            <BusinessList businessListData={businessList} />
+                            <BusinessList selectedCategory={category} businessListData={businessList} />
                         </div>
                         <div>
                             Google Map

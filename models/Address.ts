@@ -6,5 +6,6 @@ export default interface Address {
     rating: number,
     image: {
         url: string
-    }
+    },
+    distanceFromUser: number // this tracks the distance (in Kms) of the store from current user location
 }
