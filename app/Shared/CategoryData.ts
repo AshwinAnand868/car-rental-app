@@ -1,5 +1,3 @@
-// categorizing by top nearest places, and top rated places
-
 import Category from "@/models/Category";
 
 const CategoryListData: Array<Category> = [
