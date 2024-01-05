@@ -13,6 +13,8 @@ import Address from '@/models/Address';
 import { UserLocationContext } from '@/context/UserLocationContext';
 import UserLocationContextType, { UserLocation } from '@/context-models/UserLocationContextType';
 import getDistanceFromLatLonInKm from '../Shared/getDistanceFromLatLonInKm';
+import Map from '../Maps/Map';
+import { BusinessListContext } from '@/context/BusinessListContext';
 
 function SearchInput() {
 
@@ -115,17 +117,18 @@ function SearchInput() {
                     onDismiss={closeModalHandler}
                     title={'Select your preferred store location...'}
                 >
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10 max-w-full mt-2 3xl:mt-5 3xl:mb-5 md:w-[800px] h-[650px] md:h-[600px] max-h-641px'>
-                        <div>
-                            <SearchBar />
-                            <CategoryList setSelectedCategory={(value: string) => sortStoreLocsByCategory(value)} />
-                            <BusinessList selectedCategory={category} businessListData={businessList} />
+                    <BusinessListContext.Provider value={businessList}>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10 max-w-full mt-2 3xl:mt-5 3xl:mb-5 md:w-[1000px] h-[650px] md:h-[600px] max-h-641px'>
+                            <div>
+                                <SearchBar />
+                                <CategoryList setSelectedCategory={(value: string) => sortStoreLocsByCategory(value)} />
+                                <BusinessList selectedCategory={category} businessListData={businessList} />
+                            </div>
+                            <div>
+                                <Map />
+                            </div>
                         </div>
-                        <div>
-                            Google Map
-                        </div>
-                    </div>
-
+                    </BusinessListContext.Provider>
                 </Modal>
             </div>
         </div>
