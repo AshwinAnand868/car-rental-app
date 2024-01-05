@@ -10,7 +10,7 @@ const BusinessItem = ({store}: BusinessItemProps) => {
   return (
     <div className='flex gap-4 p-1 md:p-2
     border-b border-gray-300 mb-1 items-center'>
-      <Image src={store?.image?.url}
+      <Image src={store?.image?.url!}
         alt='Business Image'
         width={60}
         height={60}
