@@ -1,17 +1,26 @@
 import { UserLocation } from '@/context-models/UserLocationContextType'
 import { BusinessListContext } from '@/context/BusinessListContext'
+import Address from '@/models/Address'
 import { InfoBox, InfoWindow, MarkerF } from '@react-google-maps/api'
-import React, { useContext, useState } from 'react'
+import Image from 'next/image'
+import React, { useContext, useEffect, useState } from 'react'
 
 interface MarkerProps {
-  userLocation: UserLocation
+  userLocation: UserLocation,
+  businessProp: Address
 }
 
-const Marker = ({ userLocation }: MarkerProps) => {
+const Marker = ({ userLocation, businessProp }: MarkerProps) => {
 
   const businessList = useContext(BusinessListContext);
   const [activeMarkerId, setActiveMarkerId] = useState<number | null>(null);
   const [showUserInfoWindow, setShowUserInfoWindow] = useState<any>();
+
+  useEffect(() => {
+    let idx: number = businessList?.findIndex((business) => business.name === businessProp.name) as number;
+    setActiveMarkerId(idx);
+    setShowUserInfoWindow(false);
+  }, [businessProp])
 
   function handleActiveMarker(currentMarkerId: number): void {
     setShowUserInfoWindow(false);
@@ -22,20 +31,47 @@ const Marker = ({ userLocation }: MarkerProps) => {
     setActiveMarkerId(currentMarkerId);
   }
 
+  const onFlightImageClick = (index: number) => {
+    if (businessList) {
+      window.open(`https://www.google.com/maps/dir/?api=1&origin=
+    ${userLocation.lat},${userLocation.lng}&destination=${businessList[index].latitude},${businessList[index].longitude}
+    &travelmode=driving`)
+    }
+  }
+
   return (
-    <div className='avbc'>
+    <div>
       {businessList && businessList.map((business, index) => (
         <MarkerF
           key={index}
           position={new google.maps.LatLng(business.latitude, business.longitude)}
           onClick={() => handleActiveMarker(index)}
         >
-          {activeMarkerId === index && <InfoWindow onCloseClick={() => setActiveMarkerId(null)}>
-            <div className='text-black'>
-              <strong className='text-[14px]'>Business Name: </strong><span>{business.name}</span><br />
-              <strong className='text-[14px]'>Address: </strong><span>{business.location}</span>
-            </div>
-          </InfoWindow>}
+          {activeMarkerId === index &&
+            <InfoWindow
+              onCloseClick={() => setActiveMarkerId(null)}
+              options={{
+                maxWidth: 310
+              }}
+            >
+              <div className='flex items-center gap-3 sm:gap-1 md:flex-row flex-col'>
+                <div className='text-black sm:text-[14px] text-[9px]'>
+                  <strong>Business Name: </strong><span>{business.name}</span><br />
+                  <strong>Address: </strong><span>{business.location}</span>
+                </div>
+                <div className='bg-slate-500 rounded-md w-10 h-[36px] p-2'>
+                  <Image
+                    className='hover:scale-125 transition-all cursor-pointer'
+                    src='/flight.png'
+                    alt='flight'
+                    width={20}
+                    height={20}
+                    onClick={() => onFlightImageClick(index)}
+                  />
+                </div>
+              </div>
+
+            </InfoWindow>}
 
         </MarkerF>
       ))}
@@ -48,7 +84,7 @@ const Marker = ({ userLocation }: MarkerProps) => {
         onClick={() => setShowUserInfoWindow(true)}
       >
         {showUserInfoWindow &&
-          <InfoWindow 
+          <InfoWindow
             options={{
               minWidth: 100
             }}

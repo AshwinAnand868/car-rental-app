@@ -7,7 +7,10 @@ import { useEffect, useState } from "react"
 
 export default function Page() {
 
-  const [userLocation, setUserLocation] = useState<UserLocation>();
+  const [userLocation, setUserLocation] = useState<UserLocation>({
+    lat: 0,
+    lng: 0
+  });
 
   useEffect(() => {
     getUserLocation();
@@ -24,10 +27,10 @@ export default function Page() {
   }
 
   return (
-    <UserLocationContext.Provider value={ userLocation ? {
+    <UserLocationContext.Provider value={{
       userLocation,
       setUserLocation
-    } : null}>
+    }}>
       <Home></Home>
     </UserLocationContext.Provider>
   )

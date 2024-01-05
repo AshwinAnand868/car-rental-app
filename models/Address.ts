@@ -4,8 +4,8 @@ export default interface Address {
     latitude: number,
     longitude: number,
     rating: number,
-    image: {
+    image?: {
         url: string
     },
-    distanceFromUser: number // this tracks the distance (in Kms) of the store from current user location
+    distanceFromUser?: number // this tracks the distance (in Kms) of the store from current user location
 }

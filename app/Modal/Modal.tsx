@@ -20,7 +20,7 @@ const Modal = ({ isOpen, title, onDismiss, children }: ModalProps) => {
         onClick={onDismiss}
     >
         <div
-            className='w-[90%] md:w-[1000px] h-[90vh] max-h-[680px] overflow-x-hidden bg-white rounded-xl p-2 flex flex-col relative'
+            className='w-[90%] md:w-[1000px] h-[90vh] max-h-[680px] overflow-x-hidden bg-white rounded-xl p-2 sm:pb-2 pb-[9rem] flex flex-col relative'
             onClick={(event) => event.stopPropagation()}
         >
             <AiOutlineClose className='absolute right-4 top-3 cursor-pointer'

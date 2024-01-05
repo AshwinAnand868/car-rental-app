@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BusinessItem from './BusinessItem';
 import Address from '@/models/Address';
 import BusinessItemSkelton from './BusinessItemSkeleton';
+import { SelectedBusinessContext } from '@/context/SelectedBusinessContext';
+import SelectedBusinessContextType from '@/context-models/SelectedBusinessContextType';
 
 interface BusinessListProps {
     selectedCategory: string,
@@ -11,7 +13,8 @@ interface BusinessListProps {
 const BusinessList = ({selectedCategory, businessListData}: BusinessListProps) => {
 
     const [count, setCount] = useState<number>(0);
-    const [loading, setIsLoading] = useState<boolean>(true);
+    const [loading, setIsLoading] = useState<boolean>(true); 
+    const { selectedBusiness, setSelectedBusiness } = useContext(SelectedBusinessContext) as SelectedBusinessContextType;
 
     useEffect(() => {
         setTimeout(() => {
@@ -55,7 +58,8 @@ const BusinessList = ({selectedCategory, businessListData}: BusinessListProps) =
                 {!loading ? 
                 businessListData.map((addr: Address, index: number) =>
                     index >= count && index < count + 3 && ( // to show 3 stores at first
-                    <div key={index}>
+                    <div key={index} className='cursor-pointer'
+                    onClick={() => setSelectedBusiness(addr)}>
                         <BusinessItem store={addr}/>
                     </div>
                 )) : 
