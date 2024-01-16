@@ -28,9 +28,10 @@ function NavBar() {
         'pt-5 px-5 pb-[0.8rem]',
         'shadow-sm',
         'border-b',
-        {
-            'bg-white': openSideMenu
-        }
+        'sticky',
+        'top-0',
+        'z-50',
+        'bg-white'
     )
 
     return (
