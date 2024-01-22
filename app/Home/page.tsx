@@ -12,6 +12,7 @@ import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext'
 import { StoreLocationsContext } from '@/context/StoreLocationsContext'
 import Address from '@/models/Address'
 import StoreLocation from '@/models/StoreLocation'
+import Footer from '../Footer/Footer'
 
 export default function Home() {
 
@@ -23,14 +24,14 @@ export default function Home() {
   const selectedBrand = useRef('');
   const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string>('');
-  const  scrollToCarList = useRef<HTMLDivElement | null>(null);
+  const scrollToCarList = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     carList();
   }, []);
 
   useEffect(() => {
-    if(showToastMsg) {
+    if (showToastMsg) {
       setTimeout(() => {
         setShowToastMsg(false);
       }, 5000);
@@ -50,52 +51,53 @@ export default function Home() {
     const result = await getCarsList() as CarsList;
     setCarsList(result?.carLists);
     setCarsOrgList(result?.carLists);
-  } 
+  }
 
   const filterCarList = (brand: string) => {
     selectedBrand.current = brand;
     let filteredOutCars = [];
-    if(brand !== ALL_AVAILABLE_BRANDS){
+    if (brand !== ALL_AVAILABLE_BRANDS) {
       filteredOutCars = carsOrgList.filter((car: Car) => car.carBrand === brand);
     } else {
       filteredOutCars = [...carsOrgList];
     }
 
-    if(sortingOrder.current !== '') {
-      filteredOutCars.sort((carA: Car, carB: Car) => 
-        sortingOrder.current === 'ascending' ? 
+    if (sortingOrder.current !== '') {
+      filteredOutCars.sort((carA: Car, carB: Car) =>
+        sortingOrder.current === 'ascending' ?
           carA.price - carB.price
           : carB.price - carA.price
       );
     }
     setCarsList(filteredOutCars);
-  }    
-  
+  }
+
   const sortCarsByPrice = (orderingCriteria: string) => {
     sortingOrder.current = orderingCriteria;
 
     let orgListCopy = [...carsOrgList];
-    if(selectedBrand.current !== '' && selectedBrand.current !== ALL_AVAILABLE_BRANDS) {
+    if (selectedBrand.current !== '' && selectedBrand.current !== ALL_AVAILABLE_BRANDS) {
       orgListCopy = orgListCopy.filter((car: Car) => car.carBrand === selectedBrand.current);
     }
 
-    const sortedCars = orgListCopy.sort((carA: Car, carB: Car) => 
-      orderingCriteria === 'ascending' ? 
-        carA.price - carB.price 
+    const sortedCars = orgListCopy.sort((carA: Car, carB: Car) =>
+      orderingCriteria === 'ascending' ?
+        carA.price - carB.price
         : carB.price - carA.price
     );
     setCarsList(sortedCars);
   }
 
   return (
-    <div className="p-5 sm:px-10 md:px-20">
+    <>
+      <div className="p-5 px-10">
         <Hero scrollToCarListRef={scrollToCarList} />
         <StoreLocationsContext.Provider value={{
           storesLocs,
           setStoresLocs
         }}>
           <SearchInput />
-          <CarsFilterOptions carsOrgList={carsOrgList} 
+          <CarsFilterOptions carsOrgList={carsOrgList}
             setBrandType={(value: string) => filterCarList(value)}
             sortCarsByPrice={(orderingCriteria: string) => sortCarsByPrice(orderingCriteria)}
           />
@@ -106,11 +108,14 @@ export default function Home() {
             setToastMsg
           }}>
             <div className='mt-2' ref={scrollToCarList}>
-              <CarsListView carLists={carsList}/>
+              <CarsListView carLists={carsList} />
             </div>
-            { showToastMsg ? <ToastMsg msg={toastMsg}/> : null }
+            {showToastMsg ? <ToastMsg msg={toastMsg} /> : null}
           </BookingCreatedFlagContext.Provider>
         </StoreLocationsContext.Provider>
-    </div>  
+      </div>
+      <Footer />
+    </>
+
   )
 }
