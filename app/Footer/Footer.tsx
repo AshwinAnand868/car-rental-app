@@ -5,55 +5,72 @@ import Link from "next/link";
 import SocialMediaIcons from "./SocialMediaIcons";
 
 const Footer = () => {
+
+    const links = [
+        [
+            { label: "Explore", key: "header-1" },
+            { label: "About Us", key: "item-1-1", url: " " },
+            { label: "Blog", key: "item-1-2", url: " " },
+            { label: "Contact", key: "item-1-3", url: " " },
+            { label: "Pricing", key: "item-1-4", url: " " },
+            { label: "Testimonials", key: "item-1-5", url: " " },
+        ],
+        [
+            { label: "Support", key: "header-2" },
+            { label: "Help center", key: "item-2-1", url: " " },
+            { label: "Terms of service", key: "item-2-2", url: " " },
+            { label: "Legal", key: "item-2-3", url: " " },
+            { label: "Privacy policy", key: "item-2-4", url: " " },
+            { label: "Status", key: "item-2-5", url: " " },
+        ],
+    ]
+
     return (
-        <div className='bg-blue-600 text-white w-full mx-auto'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 ml-4 pb-[50px] pt-[50px] mb-3'>
-                <div className='px-10'>
-                    <h1 className='text-[16px] md:text-[20px] mb-2 font-bold'>About Us</h1>
-                    <p className="text-[12px] md:text-[16px]">
-                        Getting dressed up and traveling with good friends makes for a shared, unforgettable experience.
-                    </p>
+        <div className='py-16 p-7 bg-blue-600 text-white w-full gap-4'>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 relative w-full">
+                <div>
+                    <div>
+                        <span className="text-3xl font-bold">
+                            Rent Smart Cars
+                        </span>
+                    </div>
+                    <div className="text-gray-400">
+                        <span>Copyright © 2023. All rights reserved</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                        <SocialMediaIcons />
+                    </div>
                 </div>
-                <div className='px-10'>
-                    <h1 className='text-[16px] md:text-[20px] mb-2 font-bold'>Contact Info</h1>
-                    <p className='text-[12px] md:text-[16px] flex flex-column gap-3'>
-                        <FaPhoneAlt className='mt-1' />
-                        <span>416-888-9999</span>
-                    </p>
-                    <p className='text-[12px] md:text-[16px] mt-2 flex flex-column gap-3'>
-                        <MdLocationPin className='mt-1 text-[16px] md:text-[20px]' />
-                        <span>123 Fake St. Brampton, Ontario</span>
-                    </p>
-                    <p className='text-[12px] md:text-[16px] mt-2 flex flex-column gap-3'>
-                        <FaRegCalendarAlt className='mt-1' />
-                        <span>Mon - Sat 8.00 - 18.00 Sunday CLOSED</span>
-                    </p>
-                    {/* <div className="mt-5"> */}
-                        {/* <SocialMediaIcons /> */}
-                    {/* </div> */}
+                <div className="mx-2 grid grid-cols-2 py-5 sm:py-0 w-full">
+                    {links.map((col, index) => {
+                        return (
+                            <ul className={`col col-${index + 1}`} key={`col-${index}`}>
+                                {col.map((link, index) => {
+                                    return (
+                                        <li
+                                            key={`link-${col}-${index}`}
+                                            className={`text-gray-400 ${link.key === "header-1" || link.key === "header-2"
+                                                ? "text-2xl text-white"
+                                                : ""
+                                                }`}
+                                        >
+                                            {link.url ?
+                                                <Link href={link.url} target="_blank" className="cursor-pointer">
+                                                    {link.label}
+                                                </Link>
+                                                : <>
+                                                    {link.label}
+                                                </>}
+
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        );
+                    })}
                 </div>
-                <div className='px-10'>                   
+                <div className="col-span-1 mt-0 sm:mt-4 lg:mt-0 sm:mx-auto md:col-span-2 lg:col-span-1">
                     <Newsletter />
-                </div>
-            </div>
-            <div className="">
-                <div className="text-[10.5px] md:[text-13px] border-t border-white px-16 pt-6 pb-6 w-[95%] flex flex-col items-center justify-center sm:block">
-                    <div className="mb-8 sm:mb-0">
-                        © Copyright Rent Smart Cars - 2024
-                    </div>
-                    <div className="float-right mt-[-20px]">
-                        <ul className="list-none flex flex-wrap flex-col sm:flex-row gap-2 md:gap-8">
-                            <li className="menu-item">
-                                <Link href='/'>About Us</Link>
-                            </li>
-                            <li className="menu-item">
-                                <Link href='/'>FAQs</Link>
-                            </li>
-                            <li className="menu-item">
-                                <Link href='/'>Contact Us</Link>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
