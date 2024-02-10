@@ -111,19 +111,7 @@ function SearchInput() {
                             placeholder='Location'
                             className='outline-none bg-transparent p-2 text-gray-400 cursor-pointer' />
                     </div>
-                    {/* <hr className='block sm:hidden w-full h-0.5 mx-auto bg-gray-300 border-0 rounded' />
-                    <div className="search-date">
-                        <input type="date"
-                            className='outline-none bg-transparent p-2 text-gray-400' />
-                    </div> */}
                 </div>
-                {/* <Popup
-                    trigger={
-
-                    }
-                    content='Oops! Search functionality has not been implemented yet.'
-                    position='bottom center'
-                /> */}
 
                 <Modal
                     isOpen={showModal}
