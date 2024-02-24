@@ -14,17 +14,17 @@ function Hero({scrollToCarListRef}: HeroProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2">
         <div>
-            <h2 className="text-[40px] md:text-[60px]
-                font-bold">
-                Premium Car <span className="text-blue-600">Rental</span> in Your Area.
+            <h2 className="tw-text-[40px] md:tw-text-[60px]
+                tw-font-bold tw-mt-2">
+                Premium Car <span className="tw-text-blue-600">Rental</span> in Your Area.
             </h2>
-            <h2 className="text-[20px] text-gray-500 pr-20 mt-5">
+            <p className="tw-text-[20px] tw-text-gray-500 tw-pr-20 tw-mt-5 tw-mb-0">
                 Book the selected car effortlessly, Pay for driving only, Book the Car Now
-            </h2>
+            </p>
             <button 
-                className="p-2 mt-5 bg-blue-500 text-white px-4 rounded-full hover:scale-105 transition-all"
+                className="tw-p-2 tw-mt-5 tw-bg-blue-500 tw-text-white tw-px-4 tw-rounded-full hover:tw-scale-105 tw-transition-all"
                 onClick={() => scrollToCarListAction(scrollToCarListRef)}>
                     Explore Cars
             </button>
@@ -34,7 +34,7 @@ function Hero({scrollToCarListRef}: HeroProps) {
                 alt='hero'
                 width={400}
                 height={500}
-                className='w-full object-cover align-middle'
+                className='tw-w-full tw-object-cover tw-align-middle'
             />
         </div>
     </div>

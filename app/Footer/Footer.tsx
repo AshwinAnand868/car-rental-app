@@ -26,36 +26,36 @@ const Footer = () => {
     ]
 
     return (
-        <div className='py-16 p-7 bg-blue-600 text-white w-full gap-4'>
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 relative w-full">
+        <div className='tw-py-16 tw-p-7 tw-bg-blue-600 tw-text-white tw-w-full tw-gap-4'>
+            <div className="tw-grid lg:tw-grid-cols-3 md:tw-grid-cols-2 tw-grid-cols-1 tw-relative tw-w-full">
                 <div>
                     <div>
-                        <span className="text-3xl font-bold">
+                        <span className="tw-text-3xl tw-font-bold">
                             Rent Smart Cars
                         </span>
                     </div>
-                    <div className="text-gray-400">
-                        <span>Copyright © 2023. All rights reserved</span>
+                    <div className="tw-text-gray-400">
+                        <span>Copyright © 2024. All rights reserved</span>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="tw-flex tw-items-center tw-space-x-3">
                         <SocialMediaIcons />
                     </div>
                 </div>
-                <div className="mx-2 grid grid-cols-2 py-5 sm:py-0 w-full">
+                <div className="tw-mx-2 tw-grid tw-grid-cols-2 tw-py-5 sm:tw-py-0 tw-w-full">
                     {links.map((col, index) => {
                         return (
-                            <ul className={`col col-${index + 1}`} key={`col-${index}`}>
+                            <ul className={`tw-col tw-col-${index + 1}`} key={`tw-col-${index}`}>
                                 {col.map((link, index) => {
                                     return (
                                         <li
                                             key={`link-${col}-${index}`}
-                                            className={`text-gray-400 ${link.key === "header-1" || link.key === "header-2"
-                                                ? "text-2xl text-white"
+                                            className={`tw-text-gray-400 ${link.key === "header-1" || link.key === "header-2"
+                                                ? "tw-text-2xl tw-text-white"
                                                 : ""
                                                 }`}
                                         >
                                             {link.url ?
-                                                <Link href={link.url} target="_blank" className="cursor-pointer">
+                                                <Link href={link.url} target="_blank" className="tw-cursor-pointer tw-no-underline tw-text-gray-400">
                                                     {link.label}
                                                 </Link>
                                                 : <>
@@ -69,7 +69,7 @@ const Footer = () => {
                         );
                     })}
                 </div>
-                <div className="col-span-1 mt-0 sm:mt-4 lg:mt-0 sm:mx-auto md:col-span-2 lg:col-span-1">
+                <div className="tw-col-span-1 tw-mt-0 sm:tw-mt-4 lg:tw-mt-0 sm:tw-mx-auto md:tw-col-span-2 lg:tw-col-span-1">
                     <Newsletter />
                 </div>
             </div>

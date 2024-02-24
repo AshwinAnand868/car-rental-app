@@ -2,13 +2,13 @@ import { SignUp } from "@clerk/nextjs";
 
 const SignUpPage = () => {
     return (
-        <div className="flex items-center justify-center mt-[1rem]">
+        <div className="tw-flex tw-items-center tw-justify-center tw-mt-[1rem]">
             <SignUp 
                 appearance={{
                     elements: {
-                        card: "gap-4 pt-8 px-8 pb-6",
-                        logoImage: "h-10 mb-2",
-                        headerSubtitle: "hidden"
+                        card: "tw-gap-4 tw-pt-8 tw-px-8 tw-pb-6",
+                        logoImage: "tw-h-10 tw-mb-2",
+                        headerSubtitle: "tw-hidden"
                     }
                 }} 
             />

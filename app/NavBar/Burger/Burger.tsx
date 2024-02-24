@@ -10,7 +10,7 @@ interface BurgerProps {
 const Burger = ({openSideMenu, setOpenSideMenu}: BurgerProps) => {
 
     return (
-        <div className="burger md:!hidden" onClick={() => setOpenSideMenu(!openSideMenu)}>
+        <div className="burger md:!tw-hidden" onClick={() => setOpenSideMenu(!openSideMenu)}>
             <div className={"slice " + (openSideMenu ? "slice-1" : "")}></div>
             <div className={"slice " + (openSideMenu ? "slice-2" : "")}></div>
             <div className={"slice " + (openSideMenu ? "slice-3" : "")}></div>

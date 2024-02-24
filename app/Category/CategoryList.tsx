@@ -20,7 +20,7 @@ const CategoryList = ({ setSelectedCategory }: CategoryListProps) => {
     return (
         <div>
             {/* <h2 className='md:text-[1.2rem] text-[0.8rem] mt-3 font-bold mb-3'>Select Your category</h2> */}
-            <div className='flex gap-6 mb-3'>
+            <div className='tw-flex tw-gap-6 tw-mb-3'>
                 {category?.map(((item, index) => (
                     <div key={index} onClick={() => setSelectedCategory(item.value)}>
                         <CategoryItem {...item} />

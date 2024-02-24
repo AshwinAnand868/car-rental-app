@@ -13,6 +13,7 @@ import { StoreLocationsContext } from '@/context/StoreLocationsContext'
 import Address from '@/models/Address'
 import StoreLocation from '@/models/StoreLocation'
 import Footer from '../Footer/Footer'
+import Testimonials from '../Testimonials/Testimonials'
 
 export default function Home() {
 
@@ -90,7 +91,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="p-5 px-10">
+      <div className="tw-p-5 tw-px-10">
         <Hero scrollToCarListRef={scrollToCarList} />
         <StoreLocationsContext.Provider value={{
           storesLocs,
@@ -107,13 +108,14 @@ export default function Home() {
             toastMsg,
             setToastMsg
           }}>
-            <div className='mt-2' ref={scrollToCarList}>
+            <div className='tw-mt-2' ref={scrollToCarList}>
               <CarsListView carLists={carsList} />
             </div>
             {showToastMsg ? <ToastMsg msg={toastMsg} /> : null}
           </BookingCreatedFlagContext.Provider>
         </StoreLocationsContext.Provider>
       </div>
+      <Testimonials />
       <Footer />
     </>
 

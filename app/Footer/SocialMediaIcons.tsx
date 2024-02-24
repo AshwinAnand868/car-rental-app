@@ -48,9 +48,9 @@ const SocialMediaIcons = () => {
         return (
           <Link
             key={`social-${index}`} target='_blank' href={socialLink.url}
-            className='mt-3 p-3 rounded-full bg-blue-500 hover:bg-white hover:text-blue-500 cursor-pointer'
+            className='tw-mt-3 tw-p-3 tw-rounded-full tw-text-white tw-bg-blue-500 hover:tw-bg-white hover:tw-text-blue-500 tw-cursor-pointer'
             >
-            <Icon className='w-5 h-5'/>
+            <Icon className='tw-w-5 tw-h-5'/>
           </Link>
         );
       })}

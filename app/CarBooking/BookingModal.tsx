@@ -9,13 +9,13 @@ interface BookingModalProps {
 
 function BookingModal({selectedCar}: BookingModalProps) {
   return (
-    <div className="modal-box w-11/12 max-w-5xl h-[90vh] max-h-[680px]">
-        <div className='border-b-[1px] pb-2'>
-          <h3 className='text-[30px] font-light text-gray-400'>
+    <div className="tw-modal-box tw-w-11/12 tw-max-w-5xl tw-h-[90vh] tw-max-h-[680px]">
+        <div className='tw-border-b-[1px] tw-pb-2'>
+          <h3 className='tw-text-[30px] tw-font-light tw-text-gray-400'>
             Rent a Car Now!
           </h3>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 p-5'>
+        <div className='tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-p-5'>
           <div>
             <CarCard car={selectedCar} />
           </div>

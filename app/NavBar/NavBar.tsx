@@ -21,21 +21,8 @@ function NavBar() {
         }
     }, [openSideMenu]);
 
-    const navbarClassNames = classNames(
-        'flex',
-        'items-center',
-        'justify-between',
-        'pt-5 px-5 pb-[0.8rem]',
-        'shadow-sm',
-        'border-b',
-        'sticky',
-        'top-0',
-        'z-50',
-        'bg-white'
-    )
-
     return (
-        <div className={navbarClassNames}>
+        <div className='tw-flex tw-items-center tw-justify-between tw-pt-5 tw-px-5 tw-pb-[0.8rem] tw-shadow-sm tw-border-b tw-sticky tw-top-0 tw-z-50 tw-bg-white'>
             <Burger openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
             <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
             <Menu openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
@@ -43,7 +30,7 @@ function NavBar() {
                 <UserButton afterSignOutUrl='/'/>
             </SignedIn>
             <SignedOut>
-                <div>
+                <div className='tw-flex tw-gap-[2rem]'>
                     <Link href='../SignIn' className={'nav-link ' + (currentPath === "/SignIn" ? 'active-link' : '')}>
                         Sign In
                     </Link>

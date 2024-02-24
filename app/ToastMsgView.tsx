@@ -6,8 +6,8 @@ interface ToastMsgProps {
 
 function ToastMsg({msg}: ToastMsgProps) {
   return (
-    <div className="toast toast-end">
-        <div className="alert alert-success">
+    <div className="tw-toast tw-toast-end">
+        <div className="tw-alert tw-alert-success">
             <span>{msg}</span>
         </div>
     </div>

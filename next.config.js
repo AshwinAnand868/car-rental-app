@@ -6,6 +6,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'media.graphassets.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'mdbcdn.b-cdn.net'
             }
         ]
     }

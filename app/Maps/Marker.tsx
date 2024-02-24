@@ -54,14 +54,14 @@ const Marker = ({ userLocation, businessProp }: MarkerProps) => {
                 maxWidth: 310
               }}
             >
-              <div className='flex items-center gap-3 sm:gap-1 md:flex-row flex-col'>
-                <div className='text-black sm:text-[14px] text-[9px]'>
+              <div className='tw-flex tw-items-center tw-gap-3 sm:tw-gap-1 md:tw-flex-row tw-flex-col'>
+                <div className='tw-text-black sm:tw-text-[14px] tw-text-[9px]'>
                   <strong>Business Name: </strong><span>{business.name}</span><br />
                   <strong>Address: </strong><span>{business.location}</span>
                 </div>
-                <div className='bg-slate-500 rounded-md w-10 h-[36px] p-2'>
+                <div className='tw-bg-slate-500 tw-rounded-md tw-w-10 tw-h-[36px] tw-p-2'>
                   <Image
-                    className='hover:scale-125 transition-all cursor-pointer'
+                    className='hover:tw-scale-125 tw-transition-all tw-cursor-pointer'
                     src='/flight.png'
                     alt='flight'
                     width={20}
@@ -90,7 +90,7 @@ const Marker = ({ userLocation, businessProp }: MarkerProps) => {
             }}
             onCloseClick={() => setShowUserInfoWindow(false)}
           >
-            <span className='ml-6 font-bold text-[16px]'><strong>You</strong></span>
+            <span className='tw-ml-6 tw-font-bold tw-text-[16px]'><strong>You</strong></span>
           </InfoWindow>}
       </MarkerF>
     </div>

@@ -16,22 +16,22 @@ const Modal = ({ isOpen, title, onDismiss, children }: ModalProps) => {
     }
 
     return <div
-        className='fixed w-screen h-screen custom-modal-backdrop top-0 bottom-0 z-[2000] left-0 right-0 flex justify-center items-center'
-        onClick={onDismiss}
+    className='tw-fixed tw-w-screen tw-h-screen custom-modal-backdrop tw-top-0 tw-bottom-0 tw-z-[2000] tw-left-0 tw-right-0 tw-flex tw-justify-center tw-items-center'
+    onClick={onDismiss}
+>
+    <div
+        className='tw-w-[90%] md:tw-w-[1000px] tw-h-[90vh] tw-max-h-[680px] tw-overflow-x-hidden tw-bg-white tw-rounded-xl tw-p-2 sm:tw-pb-2 tw-pb-[9rem] tw-flex tw-flex-col tw-relative'
+        onClick={(event) => event.stopPropagation()}
     >
-        <div
-            className='w-[90%] md:w-[1000px] h-[90vh] max-h-[680px] overflow-x-hidden bg-white rounded-xl p-2 sm:pb-2 pb-[9rem] flex flex-col relative'
-            onClick={(event) => event.stopPropagation()}
-        >
-            <AiOutlineClose className='absolute right-4 top-3 cursor-pointer'
-                onClick={onDismiss} />
-            <div className='w-full h-10 flex items-center p-2 mb-1 border-b-[1px] border-b-gray-300'>
-                <h1 className='md:text-xl text-[0.8rem] font-bold'>{title}</h1>
-            </div>
-            {children}
+        <AiOutlineClose className='tw-absolute tw-right-4 tw-top-3 tw-cursor-pointer'
+            onClick={onDismiss} />
+        <div className='tw-w-full tw-h-10 tw-flex tw-items-center tw-p-2 tw-mb-1 tw-border-b-[1px] tw-border-b-gray-300'>
+            <h1 className='md:tw-text-xl tw-text-[0.8rem] tw-font-bold'>{title}</h1>
         </div>
-
+        {children}
     </div>
+
+</div>
 }
 
 export default Modal;

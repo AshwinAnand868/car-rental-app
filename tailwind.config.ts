@@ -22,5 +22,6 @@ const config: Config = {
     },
   },
   plugins: [require("daisyui")],
+  prefix: 'tw-',
 }
 export default config

@@ -18,7 +18,6 @@ export default function Page() {
 
   const getUserLocation = () => {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position);
       setUserLocation({
         lat: position.coords.latitude,
         lng: position.coords.longitude

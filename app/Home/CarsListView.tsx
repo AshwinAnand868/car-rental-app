@@ -16,7 +16,7 @@ function CarsListView(props: CarsList) {
   }, [props.carLists]);
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+    <div className='tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 xl:tw-grid-cols-4'>
         {!isLoading ? props.carLists.map((car: Car, index: number) => (
             <div key={index} 
               onClick={() => {
@@ -29,7 +29,7 @@ function CarsListView(props: CarsList) {
           <CarCardSkelton key={index}/>
         ))}
 
-      <dialog id="booking_modal" className="modal">
+      <dialog id="booking_modal" className="tw-modal">
           <BookingModal selectedCar={selectedCar!}/>
       </dialog>
     </div>

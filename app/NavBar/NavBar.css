@@ -2,19 +2,19 @@
     padding: 0.5rem 0.75rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
-    position: relative;
+    position: relative; 
 }
 
 .nav-link::after {
-    @apply content-[''] bg-blue-500 h-[0.25rem] absolute w-[0%] left-[12px] top-[1.8rem] rounded-xl duration-200
+    @apply tw-content-[''] tw-bg-blue-500 tw-h-[0.25rem] tw-absolute tw-w-[0%] tw-left-[102px] tw-top-[1.8rem] tw-rounded-xl tw-duration-200
 }
 
 .nav-link:hover::after {
-    @apply w-[66%]
+    @apply tw-w-[100%]
 }
 
 .active-link {
-    @apply underline underline-offset-4 decoration-blue-500 decoration-4
+    @apply tw-underline tw-underline-offset-4 tw-decoration-blue-500 tw-decoration-4
 }
 
 @media (max-width: 767px) {

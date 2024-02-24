@@ -22,18 +22,8 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
         setOpenSideMenu(false);
     }
 
-    const menuClassNames = classNames(
-        'custom-menu',
-        'md:flex',
-        'md:justify-between',
-        'md:gap-5',
-        {
-            'show-custom-menu': openSideMenu,
-        }
-    )
-
     return (
-        <div className={menuClassNames}>
+        <div className={'custom-menu md:tw-flex md:tw-justify-between md:tw-gap-[3.5rem] ' + (openSideMenu ? 'show-custom-menu' : '')}>
             <Link href='/'
                 className={"nav-link " + (currentPath === "/" ? "active-link" : "")}
                 aria-label='home'
@@ -42,8 +32,8 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
             <Popup
                 trigger={
-                    <h2 className={"nav-link " + (currentPath === "/History" ? "active-link" : "")}
-                        aria-label='history'>History</h2>
+                    <span className={"nav-link " + (currentPath === "/History" ? "active-link" : "")}
+                        aria-label='history'>History</span>
                 }
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'
@@ -51,8 +41,8 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
             <Popup
                 trigger={
-                    <h2 className={"nav-link " + (currentPath === "/ContactUs" ? "active-link" : "")}
-                        aria-label='contact'>Contact</h2>
+                    <span className={"nav-link " + (currentPath === "/ContactUs" ? "active-link" : "")}
+                        aria-label='contact'>Contact</span>
                 }
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'
