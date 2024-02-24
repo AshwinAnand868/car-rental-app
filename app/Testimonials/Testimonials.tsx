@@ -22,7 +22,7 @@ const Testimonials = () => {
                 <Carousel className='tw-w-[100%] tw-h-[80%]' activeIndex={index} onSelect={handleSelect}>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
                         <Image
-                            src='https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp'
+                            src='https://source.unsplash.com/rDEOVtE7vOs/500x500'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -30,14 +30,14 @@ const Testimonials = () => {
                         />
                         <Carousel.Caption>
                             <blockquote className="tw-p-4 tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <h4>First slide label</h4>
-                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application."</p>
+                                <h4>Emma Doe</h4>
+                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Kudos to Rent Smart Cars! Their exceptional customer service and a fleet of well-maintained cars made our journey smooth and worry-free. I highly recommend Rent Smart Cars for your next adventure."</p>
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
                         <Image
-                            src='https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp'
+                            src='https://source.unsplash.com/v2aKnjMbP_k/500x500'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -45,14 +45,14 @@ const Testimonials = () => {
                         />
                         <Carousel.Caption>
                             <blockquote className="tw-p-4 tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <h4>Second slide label</h4>
-                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application."</p>
+                                <h4>John Doe</h4>
+                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Rent Smart Cars exceeded our expectations. The spacious and comfortable vehicle added a touch of luxury to our family road trip. The staff's professionalism and friendliness made the experience truly memorable."</p>
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
                         <Image
-                            src='https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp'
+                            src='https://source.unsplash.com/pUhxoSapPFA/500x500'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -60,8 +60,8 @@ const Testimonials = () => {
                         />
                         <Carousel.Caption>
                             <blockquote className="tw-p-4 tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <h4>Third slide label</h4>
-                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application."</p>
+                                <h4>James Doe</h4>
+                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">Rent Smart Cars offers prompt service, competitive rates, and a diverse selection of vehicles. Their commitment to customer satisfaction sets them apart. I'll be choosing Rent Smart Cars for all my future rentals."</p>
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>

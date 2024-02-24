@@ -10,6 +10,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'mdbcdn.b-cdn.net'
+            },
+            {
+                protocol: 'https',
+                hostname: 'source.unsplash.com'
             }
         ]
     }
