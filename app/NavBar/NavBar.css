@@ -6,7 +6,7 @@
 }
 
 .nav-link::after {
-    @apply tw-content-[''] tw-bg-blue-500 tw-h-[0.25rem] tw-absolute tw-w-[0%] tw-left-[102px] tw-top-[1.8rem] tw-rounded-xl tw-duration-200
+    @apply tw-content-[''] tw-bg-blue-500 tw-h-[0.25rem] tw-absolute tw-w-[0%] tw-left-[0px] tw-top-[1.8rem] tw-rounded-xl tw-duration-200
 }
 
 .nav-link:hover::after {
@@ -15,6 +15,10 @@
 
 .active-link {
     @apply tw-underline tw-underline-offset-4 tw-decoration-blue-500 tw-decoration-4
+}
+
+.active-link::after {
+    @apply tw-w-[100%]
 }
 
 @media (max-width: 767px) {
