@@ -19,7 +19,7 @@ const Testimonials = () => {
         <div className='tw-flex tw-justify-center tw-h-[400px] tw-my-10'>
             <Container className='tw-flex tw-flex-col tw-justify-center tw-items-center !tw-text-black' fluid>
                 <span className='tw-text-[3rem] tw-font-semibold tw-italic'>What Our Clients Have to Say</span>
-                <Carousel className='tw-w-[100%] tw-h-[80%]' activeIndex={index} onSelect={handleSelect}>
+                <Carousel className='tw-w-[100%] tw-h-[80%]' activeIndex={index} onSelect={handleSelect} indicators={false}>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
                         <Image
                             src='https://source.unsplash.com/rDEOVtE7vOs/500x500'
