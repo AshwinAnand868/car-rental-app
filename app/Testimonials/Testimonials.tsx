@@ -11,9 +11,7 @@ const Testimonials = () => {
     const [index, setIndex] = useState<number>(0)
 
     const handleSelect = (selectedIndex: number) => {
-        console.log("Selected Index" + selectedIndex);
-        // setIndex(selectedIndex);
-        setIndex(0);
+        setIndex(selectedIndex);
     }
 
     return (
@@ -36,33 +34,33 @@ const Testimonials = () => {
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
+                    <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
                             src='https://source.unsplash.com/v2aKnjMbP_k/500x500'
                             alt='Customer Image'
                             width={200}
                             height={200}
-                            className='tw-rounded-[50%] tw-mb-4'
+                            className='tw-rounded-[50%] lg:tw-mb-4 tw-object-cover tw-w-[150px] tw-h-[150px] md:tw-w-[200px] md:tw-h-[200px]'
                         />
                         <Carousel.Caption>
-                            <blockquote className="tw-p-4 tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <h4>John Doe</h4>
-                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Rent Smart Cars exceeded our expectations. The spacious and comfortable vehicle added a touch of luxury to our family road trip. The staff's professionalism and friendliness made the experience truly memorable."</p>
+                            <blockquote className="tw-p-4 tw-my-0 lg:tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
+                                <span className='tw-text-[17px] xsm:tw-text-[20px] sm:tw-text-[22px] tw-font-semibold'>John Doe</span>
+                                <p className="tw-text-[13.5px] xsm:tw-text-[17px] sm:tw-text-[18.5px] tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Rent Smart Cars exceeded our expectations. The spacious and comfortable vehicle added a touch of luxury to our family road trip. The staff's professionalism and friendliness made the experience truly memorable."</p>
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    <Carousel.Item className='tw-flex tw-justify-center tw-items-center'>
+                    <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
                             src='https://source.unsplash.com/pUhxoSapPFA/500x500'
                             alt='Customer Image'
                             width={200}
                             height={200}
-                            className='tw-rounded-[50%] tw-mb-4'
+                            className='tw-rounded-[50%] lg:tw-mb-4 tw-object-cover tw-w-[150px] tw-h-[150px] md:tw-w-[200px] md:tw-h-[200px]'
                         />
                         <Carousel.Caption>
-                            <blockquote className="tw-p-4 tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <h4>James Doe</h4>
-                                <p className="tw-text-xl tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">Rent Smart Cars offers prompt service, competitive rates, and a diverse selection of vehicles. Their commitment to customer satisfaction sets them apart. I'll be choosing Rent Smart Cars for all my future rentals."</p>
+                            <blockquote className="tw-p-4 tw-my-0 lg:tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
+                                <span className='tw-text-[17px] xsm:tw-text-[20px] sm:tw-text-[22px] tw-font-semibold'>James Doe</span>
+                                <p className="tw-text-[13.5px] xsm:tw-text-[17px] sm:tw-text-[18.5px] tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">Rent Smart Cars offers prompt service, competitive rates, and a diverse selection of vehicles. Their commitment to customer satisfaction sets them apart. I'll be choosing Rent Smart Cars for all my future rentals."</p>
                             </blockquote>
                         </Carousel.Caption>
                     </Carousel.Item>
