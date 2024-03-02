@@ -1,8 +1,8 @@
-import { FaPhoneAlt, FaRegCalendarAlt } from "react-icons/fa";
-import { MdLocationPin } from "react-icons/md";
 import Newsletter from "./Newsletter";
 import Link from "next/link";
 import SocialMediaIcons from "./SocialMediaIcons";
+
+import './Footer.css';
 
 const Footer = () => {
 
