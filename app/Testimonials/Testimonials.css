@@ -68,3 +68,9 @@
         width: 8%;
     }
 }
+
+@media (min-width: 1887px) {
+    .carousel-item {
+        height: 243.188px;
+    }
+}
