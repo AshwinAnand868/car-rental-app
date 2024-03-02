@@ -14,6 +14,7 @@ import Address from '@/models/Address'
 import StoreLocation from '@/models/StoreLocation'
 import Footer from '../Footer/Footer'
 import Testimonials from '../Testimonials/Testimonials'
+import Facts from '../Facts/Facts'
 
 export default function Home() {
 
@@ -91,7 +92,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="tw-p-5 tw-px-10">
+      <div className="tw-p-5 tw-px-10 tw-pb-0 md:tw-pb-5">
         <Hero scrollToCarListRef={scrollToCarList} />
         <StoreLocationsContext.Provider value={{
           storesLocs,
@@ -116,6 +117,7 @@ export default function Home() {
         </StoreLocationsContext.Provider>
       </div>
       <Testimonials />
+      <Facts />
       <Footer />
     </>
 
