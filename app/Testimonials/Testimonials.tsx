@@ -17,7 +17,7 @@ const Testimonials = () => {
     return (
         <div className='tw-flex tw-justify-center tw-my-10'>
             <Container className='tw-flex tw-flex-col tw-justify-center tw-items-center !tw-text-black' fluid>
-                <span className='tw-text-[1.2rem] xsm:tw-text-[1.5rem] md:tw-text-[2.3rem] lg:tw-text-[3rem] tw-font-semibold sm:tw-font-bold tw-italic tw-mb-6 lg:tw-mb-0'>What Our Clients Have to Say</span>
+                <span className='tw-text-[1.2rem] xsm:tw-text-[1.5rem] md:tw-text-[2.3rem] lg:tw-text-[3rem] tw-font-semibold tw-italic tw-mb-6 lg:tw-mb-6'>What Our Clients Have to Say</span>
                 <Carousel className='tw-w-[100%] tw-h-[100%]' activeIndex={index} onSelect={handleSelect} indicators={false}>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
