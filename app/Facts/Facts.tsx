@@ -1,52 +1,62 @@
-import React from 'react'
-import CountUp from 'react-countup';
+import React from "react";
+import CountUp from "react-countup";
 import { BsEmojiSmile } from "react-icons/bs";
 import { SlSpeedometer } from "react-icons/sl";
 import { FaCar } from "react-icons/fa";
 import { PiSteeringWheelFill } from "react-icons/pi";
 
-import './Facts.css';
+import "./Facts.css";
 
 const Facts = () => {
-    return (
-        <div className='tw-bg-gray-100 tw-mb-20 tw-pt-[50px] tw-pb-[80px]'>
-            <div className='tw-text-center tw-mb-10'>
-                <span className='tw-text-[1.2rem] xsm:tw-text-[1.5rem] md:tw-text-[2.3rem] lg:tw-text-[3rem] tw-font-semibold tw-italic'>Some Interesting Facts</span>
+  return (
+    <div className="tw-bg-gray-100 tw-mb-20 tw-pt-[50px] tw-pb-[80px]">
+      <div className="tw-text-center tw-mb-10">
+        <span className="tw-text-[1.2rem] xsm:tw-text-[1.5rem] md:tw-text-[2.3rem] lg:tw-text-[3rem] tw-font-semibold tw-italic">
+          Some Interesting Facts
+        </span>
+      </div>
+      <div className="container">
+        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-5">
+          <div className="tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl">
+            <div className="fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md">
+              <BsEmojiSmile />
             </div>
-            <div className='container'>
-                <div className='tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-5'>
-                    <div className='tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl'>
-                        <div className='fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md'>
-                            <BsEmojiSmile />
-                        </div>
-                        <h4 className='fact-text'><CountUp end={51040} duration={2} enableScrollSpy scrollSpyOnce /></h4>
-                        <span className='fact-text'>Customers</span>
-                    </div>
-                    <div className='tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl'>
-                        <div className='fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md'>
-                            <SlSpeedometer />
-                        </div>
-                        <h4 className='fact-text'><CountUp end={20500} duration={2} enableScrollSpy scrollSpyOnce /></h4>
-                        <span className='fact-text'>Daily kilometers</span>
-                    </div>
-                    <div className='tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl'>
-                        <div className='fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md'>
-                            <FaCar />
-                        </div>
-                        <h4 className='fact-text'><CountUp end={200} duration={3} enableScrollSpy scrollSpyOnce /></h4>
-                        <span className='fact-text'>Cabs</span>
-                    </div>
-                    <div className='tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl'>
-                        <div className='fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md'>
-                            <PiSteeringWheelFill />
-                        </div>
-                        <h4 className='fact-text'><CountUp end={700} duration={3} enableScrollSpy scrollSpyOnce /></h4>
-                        <span className='fact-text'>Daily trips</span>
-                    </div>
-                </div>
+            <h4 className="fact-text">
+              <CountUp end={51040} duration={2} enableScrollSpy scrollSpyOnce />
+            </h4>
+            <span className="fact-text">Customers</span>
+          </div>
+          <div className="tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl">
+            <div className="fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md">
+              <SlSpeedometer />
             </div>
+            <h4 className="fact-text">
+              <CountUp end={20500} duration={2} enableScrollSpy scrollSpyOnce />
+            </h4>
+            <span className="fact-text">Daily kilometers</span>
+          </div>
+          <div className="tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl">
+            <div className="fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md">
+              <FaCar />
+            </div>
+            <h4 className="fact-text">
+              <CountUp end={200} duration={3} enableScrollSpy scrollSpyOnce />
+            </h4>
+            <span className="fact-text">Cabs</span>
+          </div>
+          <div className="tw-bg-white tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-5 tw-rounded-2xl">
+            <div className="fact-icon tw-text-gray-400 tw-text-[50px] tw-border tw-border-gray-200 tw-p-5 tw-mb-5 tw-rounded-md">
+              <PiSteeringWheelFill />
+            </div>
+            <h4 className="fact-text">
+              <CountUp end={700} duration={3} enableScrollSpy scrollSpyOnce />
+            </h4>
+            <span className="fact-text">Daily trips</span>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Facts
+export default Facts;

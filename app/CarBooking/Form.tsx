@@ -1,114 +1,256 @@
-import { BookingCreatedFlagContext } from '@/context/BookingCreatedFlagContext';
-import Car from '@/models/Car';
-import { FormDataModel } from '@/models/FormDataModel';
-import { createBooking } from '@/services';
-import React, { useContext, useEffect, useState } from 'react'
-import Address from '@/models/Address';
-import BookingCreatedFlagContextType from '@/context-models/BookingCreatedFlagContextType';
-import StoreLocationsContextType from '@/context-models/StoreLocationsContextType';
-import { StoreLocationsContext } from '@/context/StoreLocationsContext';
+import { BookingCreatedFlagContext } from "@/context/BookingCreatedFlagContext";
+import Car from "@/models/Car";
+import { FormDataModel } from "@/models/FormDataModel";
+import { createBooking } from "@/services";
+import React, { useContext, useEffect, useState } from "react";
+import Address from "@/models/Address";
+import BookingCreatedFlagContextType from "@/context-models/BookingCreatedFlagContextType";
+import StoreLocationsContextType from "@/context-models/StoreLocationsContextType";
+import { StoreLocationsContext } from "@/context/StoreLocationsContext";
+import { useForm } from "react-hook-form";
 
 interface FormProps {
-  car: Car
+  car: Car;
 }
 
 function Form({ car }: FormProps) {
   const [formValue, setFormValue] = useState<FormDataModel>({
-    location: '',
+    location: "",
     pickUpDate: new Date(),
     dropOffDate: new Date(),
-    pickUpTime: '',
-    dropOffTime: '',
-    contactNumber: '',
-    userName: '',
-    carId: ''
+    pickUpTime: "",
+    dropOffTime: "",
+    contactNumber: "",
+    userName: "",
+    carId: "",
   });
 
   const {
-    showToastMsg,
-    setShowToastMsg,
-    toastMsg,
-    setToastMsg
-  } = useContext(BookingCreatedFlagContext) as BookingCreatedFlagContextType;
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    clearErrors,
+    reset,
+    getValues,
+  } = useForm<FormDataModel>({
+    mode: "onChange",
+    defaultValues: {
+      location: "",
+      pickUpDate: new Date(),
+      dropOffDate: new Date(),
+      pickUpTime: "",
+      dropOffTime: "",
+      contactNumber: "",
+      userName: "",
+      carId: "",
+    },
+  });
 
-  const {
-    storesLocs
-  } = useContext(StoreLocationsContext) as StoreLocationsContextType;
+  const { showToastMsg, setShowToastMsg, toastMsg, setToastMsg } = useContext(
+    BookingCreatedFlagContext
+  ) as BookingCreatedFlagContextType;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const { storesLocs } = useContext(
+    StoreLocationsContext
+  ) as StoreLocationsContextType;
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormValue({
       ...formValue,
       carId: car.id,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = async () => {
-    const responseObj = await createBooking(formValue);
+  const onSubmit = async () => {
+    console.log(formValue);
+    console.log(isValid);
+    setFormValue({ ...getValues(), carId: car.id });
+    const responseObj = await createBooking({ ...getValues(), carId: car.id });
+    (window as any).booking_modal.close();
     if (responseObj) {
       setShowToastMsg(true);
-      setToastMsg('Booking Created Succesfully!');
+      setToastMsg("Booking Created Succesfully!");
     }
-  }
+    clearErrors();
+    reset();
+  };
+
+  const handleClose = () => {
+    (window as any).booking_modal.close();
+    clearErrors();
+    reset();
+  };
 
   return (
-    <div>
-      <div className='tw-flex tw-flex-col tw-w-full tw-mb-5'>
-        <label className="tw-text-gray-400">PickUp Location</label>
-        <select className="tw-select tw-select-bordered tw-w-full tw-max-w-lg"
-          name="location" onChange={handleChange} defaultValue='pickupLocation'>
-          <option value='pickupLocation'>Pickup Location</option>
-          {storesLocs && storesLocs.map((address: Address, index: number) => (
-            <option key={index} value={address?.location}>{address?.location}</option>
-          ))}
-        </select>
-      </div>
-      <div className='tw-flex tw-flex-col sm:tw-flex-row tw-gap-5 tw-mb-5'>
-        <div className='tw-flex tw-flex-col tw-w-full'>
-          <label className='tw-text-gray-400'>Pick Up Date</label>
-          <input type="date" placeholder='Type here'
-            className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' name='pickUpDate' onChange={handleChange} />
+    storesLocs[0] && (
+      <div>
+        <div className="tw-flex tw-flex-col tw-w-full tw-mb-5">
+          <label className="tw-text-gray-400">Pick Up Location</label>
+          <select
+            className="tw-select tw-select-bordered tw-w-full tw-max-w-lg"
+            {...register("location", {
+              required: "Pick Up location is required",
+            })}
+            defaultValue={storesLocs[0].location}
+          >
+            <option key={0} value={storesLocs[0].location}>
+              {storesLocs[0].location}
+            </option>
+            {storesLocs &&
+              storesLocs.slice(1).map((address: Address, index: number) => (
+                <option key={index + 1} value={address?.location}>
+                  {address?.location}
+                </option>
+              ))}
+          </select>
+          {errors.location && (
+            <small role="alert" className="tw-text-red-700">
+              {errors.location.message}
+            </small>
+          )}
         </div>
-        <div className='tw-flex tw-flex-col tw-w-full'>
-          <label className='tw-text-gray-400'>Drop off Date</label>
-          <input type="date" placeholder='Type here'
-            className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' name='dropOffDate' onChange={handleChange} />
+        <div className="tw-flex tw-flex-col sm:tw-flex-row tw-gap-5 tw-mb-5">
+          <div className="tw-flex tw-flex-col tw-w-full">
+            <label className="tw-text-gray-400">Pick Up Date</label>
+            <input
+              type="date"
+              placeholder="Type here"
+              className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+              {...register("pickUpDate", {
+                required: "Pick up date is required",
+              })}
+              // onChange={handleChange}
+            />
+            {errors.pickUpDate && (
+              <small role="alert" className="tw-text-red-700">
+                {errors.pickUpDate.message}
+              </small>
+            )}
+          </div>
+          <div className="tw-flex tw-flex-col tw-w-full">
+            <label className="tw-text-gray-400">Drop off Date</label>
+            <input
+              type="date"
+              placeholder="Type here"
+              className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+              {...register("dropOffDate", {
+                required: "Drop off date is required",
+              })}
+              // onChange={handleChange}
+            />
+            {errors.dropOffDate && (
+              <small role="alert" className="tw-text-red-700">
+                {errors.dropOffDate.message}
+              </small>
+            )}
+          </div>
         </div>
-      </div>
-      <div className='tw-flex tw-gap-5 tw-mb-5'>
-        <div className='tw-flex tw-flex-col tw-w-full'>
-          <label className='tw-text-gray-400'>Pick Up Time</label>
-          <input type="time" placeholder='Type here'
-            className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' name='pickUpTime' onChange={handleChange} />
+        <div className="tw-flex tw-gap-5 tw-mb-5">
+          <div className="tw-flex tw-flex-col tw-w-full">
+            <label className="tw-text-gray-400">Pick Up Time</label>
+            <input
+              type="time"
+              placeholder="Type here"
+              className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+              {...register("pickUpTime", {
+                required: "Pick up time is required",
+              })}
+              // onChange={handleChange}
+            />
+            {errors.pickUpTime && (
+              <small role="alert" className="tw-text-red-700">
+                {errors.pickUpTime.message}
+              </small>
+            )}
+          </div>
+          <div className="tw-flex tw-flex-col tw-w-full">
+            <label className="tw-text-gray-400">Drop Off Time</label>
+            <input
+              type="time"
+              placeholder="Type here"
+              className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+              {...register("dropOffTime", {
+                required: "Drop off time is required",
+              })}
+              // onChange={handleChange}
+            />
+            {errors.dropOffTime && (
+              <small role="alert" className="tw-text-red-700">
+                {errors.dropOffTime.message}
+              </small>
+            )}
+          </div>
         </div>
-        <div className='tw-flex tw-flex-col tw-w-full'>
-          <label className='tw-text-gray-400'>Drop Off Time</label>
-          <input type="time" placeholder='Type here'
-            className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' name='dropOffTime' onChange={handleChange} />
+        <div className="tw-w-full tw-mb-5">
+          <label className="tw-text-gray-400">User Name</label>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+            {...register("userName", {
+              required: "Username is required",
+              pattern: {
+                value: /^[a-zA-Z]+$/,
+                message: "Username must contains letters only"
+              },
+              minLength: {
+                value: 6,
+                message: "Minimum length of username is 6 characters"
+              },
+              maxLength: {
+                value: 65,
+                message: "Maximum length of username is 65 characters"
+              },
+            })}
+            // onChange={handleChange}
+          />
+          {errors.userName && (
+            <small role="alert" className="tw-text-red-700">
+              {errors.userName.message}
+            </small>
+          )}
         </div>
-      </div>
-      <div className='tw-w-full tw-mb-5'>
-        <label className='tw-text-gray-400'>User Name</label>
-        <input type="text" placeholder='Type here' name='userName'
-          className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' onChange={handleChange} />
-      </div>
-      <div className='tw-w-full tw-mb-5'>
-        <label className='tw-text-gray-400'>Contact Number</label>
-        <input type="text" placeholder='Type here' name='contactNumber'
-          className='tw-input tw-input-bordered tw-w-full tw-max-w-lg' onChange={handleChange} />
-      </div>
-      <div className="modal-action">
-        <form method="dialog">
-          <button className='tw-btn tw-mr-5'>Close</button>
+        <div className="tw-w-full tw-mb-5">
+          <label className="tw-text-gray-400">Contact Number</label>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="tw-input tw-input-bordered tw-w-full tw-max-w-lg"
+            {...register("contactNumber", {
+              required: "Contact number is required",
+              pattern: {
+                value: /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
+                message: "Invalid mobile number (Only US or Canadaian numbers are accepted)"
+              }
+              // pattern: /^\(\d{3}\) \d{3}-\d{4}/,
+            })}
+            // onChange={handleChange}
+          />
+          {errors.contactNumber && (
+            <small role="alert" className="tw-text-red-700">
+              {errors.contactNumber.message}
+            </small>
+          )}
+        </div>
+        <div className="tw-modal-action tw-justify-start">
+          <form method="dialog">
+            <button onClick={handleClose} className="tw-btn tw-mr-5">
+              Close
+            </button>
+          </form>
           <button
-            className='tw-btn tw-bg-blue-500 tw-text-white hover:tw-bg-blue-800 tw-gap-6'
-            onClick={handleSubmit}>
+            className="tw-btn tw-bg-blue-500 tw-text-white hover:tw-bg-blue-800 tw-gap-6"
+            onClick={handleSubmit(onSubmit)}
+          >
             Save
           </button>
-        </form>
+        </div>
       </div>
-    </div>
-  )
+    )
+  );
 }
 
-export default Form
+export default Form;
