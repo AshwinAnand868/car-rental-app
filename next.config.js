@@ -13,7 +13,19 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'source.unsplash.com'
+                hostname: 'images.unsplash.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'media.ed.edmunds-media.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.edmunds.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.honda.co.uk'
             }
         ]
     }
