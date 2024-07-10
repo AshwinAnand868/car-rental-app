@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -21,7 +21,7 @@ const Testimonials = () => {
                 <Carousel className='tw-w-[100%] tw-h-[100%]' activeIndex={index} onSelect={handleSelect} indicators={false}>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
-                            src='https://source.unsplash.com/rDEOVtE7vOs/500x500'
+                            src='https://images.unsplash.com/photo-1617560363593-421aac31e9f4?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -36,7 +36,7 @@ const Testimonials = () => {
                     </Carousel.Item>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
-                            src='https://source.unsplash.com/v2aKnjMbP_k/500x500'
+                            src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3wxNzI5MjU4fHxlbnwwfHx8fHw%3D'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -51,7 +51,7 @@ const Testimonials = () => {
                     </Carousel.Item>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
-                            src='https://source.unsplash.com/pUhxoSapPFA/500x500'
+                            src='https://images.unsplash.com/photo-1512484776495-a09d92e87c3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8MTcyOTI1OHx8ZW58MHx8fHx8'
                             alt='Customer Image'
                             width={200}
                             height={200}
