@@ -15,9 +15,7 @@ export const getCarsList = async () => {
                 carType,
                 carBrand,
                 noOfSeats,
-                image {
-                    url
-                }
+                image
             }
         }
     `
@@ -76,6 +74,7 @@ export const createBooking = async (formData: FormDataModel) => {
     `
 
     const result = await request(MASTER_URL, mutationQuery);
+    console.log(result);
     return result;
 }
 

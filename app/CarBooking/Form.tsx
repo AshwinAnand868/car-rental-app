@@ -1,17 +1,18 @@
+import BookingCreatedFlagContextType from "@/context-models/BookingCreatedFlagContextType";
+import StoreLocationsContextType from "@/context-models/StoreLocationsContextType";
 import { BookingCreatedFlagContext } from "@/context/BookingCreatedFlagContext";
+import { StoreLocationsContext } from "@/context/StoreLocationsContext";
+import Address from "@/models/Address";
 import Car from "@/models/Car";
 import { FormDataModel } from "@/models/FormDataModel";
 import { createBooking } from "@/services";
-import React, { useContext, useEffect, useState } from "react";
-import Address from "@/models/Address";
-import BookingCreatedFlagContextType from "@/context-models/BookingCreatedFlagContextType";
-import StoreLocationsContextType from "@/context-models/StoreLocationsContextType";
-import { StoreLocationsContext } from "@/context/StoreLocationsContext";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import AddToCart from "../Cart/add-to-cart";
 
 interface FormProps {
   car: Car;
-}
+} 
 
 function Form({ car }: FormProps) {
   const [formValue, setFormValue] = useState<FormDataModel>({
@@ -24,6 +25,8 @@ function Form({ car }: FormProps) {
     userName: "",
     carId: "",
   });
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
 
   const {
     register,
@@ -65,14 +68,14 @@ function Form({ car }: FormProps) {
   };
 
   const onSubmit = async () => {
-    console.log(formValue);
-    console.log(isValid);
     setFormValue({ ...getValues(), carId: car.id });
+
     const responseObj = await createBooking({ ...getValues(), carId: car.id });
+
     (window as any).booking_modal.close();
     if (responseObj) {
       setShowToastMsg(true);
-      setToastMsg("Booking Created Succesfully!");
+      setToastMsg("Item added to cart successfully!");
     }
     clearErrors();
     reset();
@@ -80,6 +83,7 @@ function Form({ car }: FormProps) {
 
   const handleClose = () => {
     (window as any).booking_modal.close();
+    setIsModalOpen(false);
     clearErrors();
     reset();
   };
@@ -193,8 +197,8 @@ function Form({ car }: FormProps) {
             {...register("userName", {
               required: "Username is required",
               pattern: {
-                value: /^[a-zA-Z]+$/,
-                message: "Username must contains letters only"
+                value: /^[a-zA-Z ]+$/,
+                message: "Username must contains letters and spaces only"
               },
               minLength: {
                 value: 6,
@@ -235,18 +239,22 @@ function Form({ car }: FormProps) {
             </small>
           )}
         </div>
-        <div className="tw-modal-action tw-justify-start">
+        <div className="tw-modal-action tw-justify-start tw-flex tw-flex-col md:tw-flex-row">
           <form method="dialog">
-            <button onClick={handleClose} className="tw-btn tw-mr-5">
+            <button onClick={handleClose} className="tw-btn tw-w-[96%] tw-mr-20 tw-mb-4">
               Close
             </button>
           </form>
-          <button
+          <AddToCart addToCart={handleSubmit(onSubmit)}  data={{
+            car: car,
+            formData: formValue
+          }} isModalOpen={isModalOpen} />
+          {/* <button
             className="tw-btn tw-bg-blue-500 tw-text-white hover:tw-bg-blue-800 tw-gap-6"
             onClick={handleSubmit(onSubmit)}
           >
             Save
-          </button>
+          </button> */}
         </div>
       </div>
     )

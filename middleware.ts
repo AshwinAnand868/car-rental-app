@@ -8,6 +8,33 @@ export default authMiddleware({
 });
  
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)', '/ThankYou'],
 };
+
+// export function middleware(request: NextRequest) {
+//   const requestPath = new URL(request.url).pathname;
+//   const headersList = headers();
+//   console.log(headersList);
+
+//   if (requestPath === '/ThankYou') {
+//     try {
+//       const referer = request.headers.get('referer');
+//       console.log('MIDDLEWARE')
+//       console.log(request.url);
+//       console.log(referer);
+  
+//       if(!referer || !referer.startsWith('https://checkout.stripe.com')) {
+//         return NextResponse.redirect(new URL('/', request.url))
+//       }
+  
+//       return NextResponse.next();
+//     } catch (error) {
+//       return NextResponse.redirect(new URL('/', request.url)); 
+//     }
+//   }
+
+//   return NextResponse.next();
+  
+// }
+
  

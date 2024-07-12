@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link';
@@ -7,6 +7,8 @@ import classNames from 'classnames';
 import Burger from './Burger/Burger';
 import Menu from './Menu/Menu';
 import { usePathname } from 'next/navigation';
+import OpenCart from '../Cart/open-cart';
+import Cart from '../Cart';
 
 function NavBar() { 
     const [openSideMenu, setOpenSideMenu] = useState<boolean>(false);
@@ -26,19 +28,20 @@ function NavBar() {
             <Burger openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
             <Link href='../'><Image src='/logo.png' alt="Logo" width={100} height={100}/></Link>
             <Menu openSideMenu={openSideMenu}  setOpenSideMenu={setOpenSideMenu} />
-            <SignedIn>
-                <UserButton afterSignOutUrl='/'/>
-            </SignedIn>
-            <SignedOut>
-                <div className='tw-flex tw-gap-[2rem]'>
+            <div className='tw-flex tw-gap-[2rem]'>
+                <SignedIn>
+                    <Cart />
+                    <UserButton afterSignOutUrl='/'/>
+                </SignedIn>
+                <SignedOut>
                     <Link href='../SignIn' className={'nav-link ' + (currentPath === "/SignIn" ? 'active-link' : '')}>
                         Sign In
                     </Link>
                     <Link href='../SignUp' className={'nav-link ' + (currentPath === "/SignUp" ? 'active-link' : '')}>
                         Sign Up
                     </Link>
-                </div>
-            </SignedOut>
+                </SignedOut>
+            </div>
         </div>
     )
 }

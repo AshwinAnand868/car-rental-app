@@ -1,5 +1,4 @@
 import Car from '@/models/Car';
-import React from 'react'
 import CarCard from '../Home/CarCard';
 import Form from './Form';
 

@@ -1,17 +1,20 @@
 "use client"
-import React, { useRef } from "react";
 import Link from 'next/link';
-import './Menu.css'
-import '../NavBar.css'
-import classNames from "classnames";
-import { usePathname } from 'next/navigation'
-import { Popup } from "semantic-ui-react";
+import { usePathname } from 'next/navigation';
+import { useRef } from "react";
 import 'semantic-ui-css/components/popup.min.css';
+import { Popup } from "semantic-ui-react";
+import '../NavBar.css';
+import './Menu.css';
 
 interface MenuProps {
     openSideMenu: boolean,
     setOpenSideMenu: (value: boolean) => void
 }
+
+const links = [
+    { name: 'Home', href: '/' },
+]
 
 export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
@@ -24,11 +27,16 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
 
     return (
         <div className={'custom-menu md:tw-flex md:tw-justify-between md:tw-gap-[3.5rem] ' + (openSideMenu ? 'show-custom-menu' : '')}>
-            <Link href='/'
-                className={"nav-link " + (currentPath === "/" ? "active-link" : "")}
-                aria-label='home'
-                onClick={handleLinkClick}
-                ref={ref}>Home</Link>
+            {links.map((link) => {
+                return (
+                    <Link 
+                        key={link.name}
+                        href={link.href}
+                        className={"nav-link " + (currentPath === link.href ? "active-link" : "")}
+                        onClick={handleLinkClick}
+                        ref={ref}>{link.name}</Link>
+                )
+            })}
 
             <Popup
                 trigger={
@@ -47,6 +55,7 @@ export default function Menu({ openSideMenu, setOpenSideMenu }: MenuProps) {
                 content='Feature Coming Soon &#128521;'
                 position='bottom left'
             />
+            {/* <Link href='/ShoppingCart'></Link> */}
         </div>
     )
 }

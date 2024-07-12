@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Car from '@/models/Car'
-import Image from 'next/image'
+import Car from '@/models/Car';
+import Image from 'next/image';
 import { FaGasPump } from "react-icons/fa";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { PiSteeringWheelFill } from "react-icons/pi";
@@ -17,12 +16,12 @@ function CarCard({ car }: CarProps) {
             tw-font-medium tw-mb-2'>{car.name}</h2>
             <h2 className='tw-text-[28px] tw-font-bold tw-mb-2'>
                 <span className='tw-text-[12px] tw-font-light'>$ </span>
-                {car.price}
+                {car.price/100}
                 <span className='tw-text-[12px] tw-font-light'> /day</span>
             </h2>
 
             <div className='tw-flex tw-justify-center tw-items-center'>
-                <Image src={car?.image?.url}
+                <Image src={car?.image || 'https://www.edmunds.com/assets/m/cs/blt91de99359f393dab/6621fc74528fc1ce1e558f25/2025_toyota_camry_front.jpg'}
                     alt={car.name}
                     width={220}
                     height={200}

@@ -3,6 +3,7 @@ import { Raleway } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider, SignedIn, SignedOut, SignIn, UserButton } from '@clerk/nextjs'
 import NavBar from '@/app/NavBar/NavBar'
+import CartProvider from './provider'
 
 const inter = Raleway({ subsets: ['latin'] })
 
@@ -20,8 +21,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <CartProvider>
             <NavBar />
             {children}
+          </CartProvider>
         </body>
       </html>
     </ClerkProvider>  
