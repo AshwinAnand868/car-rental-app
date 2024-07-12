@@ -26,7 +26,11 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'www.honda.co.uk'
-            }
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.motortrend.com'
+            },
         ]
     }
 }
