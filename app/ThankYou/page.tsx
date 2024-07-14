@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const ThankYou = () => {
   return (
-    <div className="tw-text-gray-500 tw-text-4xl tw-font-bold tw-flex tw-flex-col tw-justify-center tw-items-center tw-h-[80vh] tw-w-full tw-gap-4">
+    <div className="tw-text-gray-500 tw-text-[16px] sm:tw-text-2xl md:tw-text-4xl tw-font-bold tw-flex tw-flex-col tw-justify-center tw-items-center tw-h-[80vh] tw-w-full tw-gap-4">
       <span className="tw-p-5">Thank you for placing your order 🙂</span>
       <Link href={"/"} 
         className="tw-bg-orange-400 tw-border-orange-400 tw-text-white 
