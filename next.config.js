@@ -31,6 +31,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'www.motortrend.com'
             },
+            {
+                protocol: 'https',
+                hostname: 'hips.hearstapps.com'
+            }
         ]
     }
 }
