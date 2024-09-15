@@ -21,7 +21,7 @@ const Testimonials = () => {
                 <Carousel className='tw-w-[100%] tw-h-[100%]' activeIndex={index} onSelect={handleSelect} indicators={false}>
                     <Carousel.Item className='tw-flex tw-justify-center tw-items-center tw-flex-col lg:tw-flex-row'>
                         <Image
-                            src='https://images.unsplash.com/photo-1617560363593-421aac31e9f4?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                            src='https://images.unsplash.com/photo-1626544346705-1c0164970c41?q=80&w=1806&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                             alt='Customer Image'
                             width={200}
                             height={200}
@@ -29,7 +29,7 @@ const Testimonials = () => {
                         />
                         <Carousel.Caption>
                             <blockquote className="tw-p-4 tw-my-0 lg:tw-my-4 tw-border-s-4 tw-border-gray-300 tw-bg-gray-50 dark:tw-border-gray-500 dark:tw-bg-gray-800">
-                                <span className='tw-text-[17px] xsm:tw-text-[20px] sm:tw-text-[22px] tw-font-semibold'>Emma Doe</span>
+                                <span className='tw-text-[17px] xsm:tw-text-[20px] sm:tw-text-[22px] tw-font-semibold'>Suraj Kumar</span>
                                 <p className="tw-text-[13.5px] xsm:tw-text-[17px] sm:tw-text-[18.5px] tw-italic tw-font-medium tw-leading-relaxed tw-text-gray-900 dark:tw-text-white">"Kudos to Rent Smart Cars! Their exceptional customer service and a fleet of well-maintained cars made our journey smooth and worry-free. I highly recommend Rent Smart Cars for your next adventure."</p>
                             </blockquote>
                         </Carousel.Caption>
