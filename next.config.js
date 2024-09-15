@@ -17,6 +17,14 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'media.ed.edmunds-media.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.edmunds.com'
+            },
+            {
+                protocol: 'https',
                 hostname: 'www.honda.co.uk'
             },
             {
